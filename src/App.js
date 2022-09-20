@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import TodoList from './components/TodoList';
+import DoneList from './components/DoneList';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,7 +20,20 @@ const Container = styled.div`
   overflow: auto;
 
   width: 30rem;
-  height: 40rem;
+  height: 52rem;
+  border-radius: 20px;
+  background: #000000;
+  border: 1px solid white;
+`;
+
+const SubContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+
+  width: 25rem;
+  height: 17rem;
   border-radius: 20px;
   background: #000000;
   border: 1px solid white;
@@ -42,6 +57,7 @@ const RowContainer = styled.div`
 
 const Title = styled.div`
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
   color: white;
   text-align: left;
   font-size: 2rem;
@@ -55,7 +71,8 @@ const TodoForm = styled.div`
 
 const TodoInput = styled.input`
   width: 15rem;
-  height: 2rem;
+  height: 1.5rem;
+  border-radius: 20px;
 `;
 
 const EnterButton = styled.button`
@@ -73,7 +90,7 @@ const DeleteButton = styled.button`
   width: 2rem;
 `;
 
-const TodoText = styled.div`
+const TodoText = styled.text`
   line-height: 2rem;
   padding: 1rem;
   font-size: 1rem;
@@ -82,49 +99,50 @@ const TodoText = styled.div`
 `;
 
 function App() {
+  const [cnt, setCnt] = useState(1);
+  // input 값
+  const [text, setText] = useState('');
+  // DoingList에 넣을 값
+  const [doingList, setDoingList] = useState([]);
+  // DoneList에 넣을 값
+  const [doneList, setDoneList] = useState([]);
+
+  const onChange = (e) => {
+    setText(e.target.value);
+    // setTextList([...textList, e.target.value]);
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key == 'Enter') {
+      onReset();
+    }
+  };
+
+  const onReset = () => {
+    const todo = {
+      id: cnt,
+      text: text,
+    };
+    setDoingList(doingList.concat(todo));
+    setCnt(cnt + 1);
+    setText('');
+  };
+
   return (
     <>
       <GlobalStyle />
       <Container>
         <Title> To-Do</Title>
         <TodoForm>
-          <TodoInput />
-          <EnterButton />
+          <TodoInput onKeyPress={onKeyPress} onChange={onChange} value={text} />
+          <EnterButton onClick={onReset} onChange={onChange} />
         </TodoForm>
 
-        <Title> Doing</Title>
+        <Title> Doing ( {doingList.length} )</Title>
+        <TodoList todos={doingList} />
 
-        <RowContainer>
-          <TodoText> 첫번째 할 일</TodoText>
-          <DeleteButton />
-        </RowContainer>
-
-        <RowContainer>
-          <TodoText> 첫번째 할 일</TodoText>
-          <DeleteButton />
-        </RowContainer>
-
-        <RowContainer>
-          <TodoText> 첫번째 할 일</TodoText>
-          <DeleteButton />
-        </RowContainer>
-
-        <RowContainer>
-          <TodoText> 첫번째 할 일</TodoText>
-          <DeleteButton />
-        </RowContainer>
-
-        <RowContainer>
-          <TodoText> 첫번째 할 일</TodoText>
-          <DeleteButton />
-        </RowContainer>
-
-        <RowContainer>
-          <TodoText> 첫번째 할 일</TodoText>
-          <DeleteButton />
-        </RowContainer>
-
-        <Title> Done</Title>
+        <Title> Done ( {doneList.length} )</Title>
+        <DoneList todos={doneList} />
       </Container>
     </>
   );
