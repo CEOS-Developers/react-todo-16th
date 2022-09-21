@@ -90,13 +90,14 @@ const EnterButton = styled.img`
 const DeleteButton = styled.img`
   line-height: 0rem;
   margin-left: 0.5rem;
-  margin-top: 0.5rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
   height: 1rem;
   width: 1rem;
 `;
 
 const TodoText = styled.button`
-  line-height: 0rem;
+  line-height: 1rem;
   margin-left: 1rem;
   padding: 1rem;
   font-size: 1rem;
