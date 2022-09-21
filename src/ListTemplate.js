@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from "styled-components"
 import ListTitle from './ListTitle';
 import TodoList from './TodoList';
@@ -13,11 +13,24 @@ const ListTemplateBlock = styled.div`
     align-items: center;
 `
 const ListTemplate = () => {
+    const [todos,setTodos] = useState([]);
+
+    const Id = useRef(0);
+
+    const handleSubmit = (text) => {
+        const todo = {
+            id: Id.current,
+            text
+        };
+        setTodos([...todos,todo]);
+        Id.current++;
+    }
+    
     return (
         <div>
             <ListTemplateBlock>
-                <ListTitle/>
-                <TodoList/>
+                <ListTitle onSubmit = {handleSubmit}/>
+                <TodoList todos = {todos}/>
                 <DoneList/>
             </ListTemplateBlock>
         </div>

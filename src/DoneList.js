@@ -12,7 +12,7 @@ const DoneList = () => {
     return (
         <div>
             <DoneListBlock>
-                DoneList
+                DONE
             </DoneListBlock>
         </div>
     );
