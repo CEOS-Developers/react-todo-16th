@@ -3,6 +3,10 @@ import styled, { createGlobalStyle } from 'styled-components';
 import TodoList from './components/TodoList';
 import DoneList from './components/DoneList';
 
+import deleteImg from './img/delete.png';
+import plusImg from './img/plus.png';
+import firework from './img/firework.gif';
+
 const GlobalStyle = createGlobalStyle`
   body {
     display: flex;
@@ -29,7 +33,7 @@ const Container = styled.div`
 const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   overflow: auto;
 
   width: 25rem;
@@ -75,29 +79,38 @@ const TodoInput = styled.input`
   border-radius: 20px;
 `;
 
-const EnterButton = styled.button`
+const EnterButton = styled.img`
   margin-left: 0.5rem;
   height: 2rem;
   width: 2rem;
   margin-bottom: -0.8rem;
-  background-image: url('./img/plus.png');
+  // background-image: url('./img/plus.png');
 `;
 
-const DeleteButton = styled.button`
-  line-height: 2rem;
+const DeleteButton = styled.img`
+  line-height: 0rem;
   margin-left: 0.5rem;
-  height: 2rem;
-  width: 2rem;
+  margin-top: 0.5rem;
+  height: 1rem;
+  width: 1rem;
 `;
 
 const TodoText = styled.button`
-  line-height: 2rem;
+  line-height: 0rem;
+  margin-left: 1rem;
   padding: 1rem;
   font-size: 1rem;
   text-align: center;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+`;
+
+const Celebrate = styled.img`
+  display: none;
+  position: absolute;
+  height: 30rem;
+  width: 30rem;
 `;
 
 function App() {
@@ -170,10 +183,11 @@ function App() {
     <>
       <GlobalStyle />
       <Container>
+        <Celebrate src={firework} />
         <Title> To-Do</Title>
         <TodoForm>
           <TodoInput onKeyPress={onKeyPress} onChange={onChange} value={text} />
-          <EnterButton onClick={onReset} onChange={onChange} />
+          <EnterButton onClick={onReset} onChange={onChange} src={plusImg} />
         </TodoForm>
 
         <Title> Doing ( {doingList.length} )</Title>
@@ -188,6 +202,7 @@ function App() {
                 onClick={() => {
                   removeList(doingList, list.id);
                 }}
+                src={deleteImg}
               />
             </RowContainer>
           ))}
@@ -205,6 +220,7 @@ function App() {
                 onClick={() => {
                   removeList(doneList, list.id);
                 }}
+                src={deleteImg}
               />
             </RowContainer>
           ))}
