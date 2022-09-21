@@ -1,4 +1,7 @@
+import './App.css';
 import { useState, useRef } from 'react';
+import { faCirclePlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
   // todo item, todo 배열, done 배열
@@ -45,33 +48,40 @@ function App() {
   };
 
   return (
-    <div>
-      <div>
-        <div>👀투두리스트👀</div>
-        <form onSubmit={createTodo} action="">
+    <div className="container">
+      <div className="input-box">
+        <div className="input-box__title">👀투두리스트👀</div>
+        <form className="input-box__content" onSubmit={createTodo} action="">
           <input
+            className="input-box__input"
             onChange={insertTodo}
             value={todo}
             type="text"
             placeholder="할 일을 입력하세요"
           />
-          <button>+</button>
+          <button>
+            <FontAwesomeIcon icon={faCirclePlus} />
+          </button>
         </form>
       </div>
-      <div>
-        <div>😩To Do</div>
-        <ul>
+      <div className="list-box">
+        <div className="list-box__title">😩To Do</div>
+        <ul className="list-box__list">
           {''}
           {todos.map((item) => (
-            <li key={item.id} onClick={() => deleteTodo(item.id)}>
+            <li className="list-box__text" key={item.id}>
               {item.todo}
+              <FontAwesomeIcon
+                icon={faTrashCan}
+                onClick={() => deleteTodo(item.id)}
+              />
             </li>
           ))}
         </ul>
       </div>
-      <div>
-        <div>🥴Done</div>
-        <ul></ul>
+      <div className="done-box">
+        <div className="done-box__title">🥴Done</div>
+        <ul className="done-box__list"></ul>
       </div>
     </div>
   );
