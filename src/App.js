@@ -122,11 +122,11 @@ function App() {
 
   const onReset = () => {
     const todo = {
-      id: cnt,
+      id: Date.now(),
       text: text,
     };
     setDoingList(doingList.concat(todo));
-    setCnt(cnt + 1);
+    // setCnt(cnt + 1);
     setText('');
   };
 
@@ -141,27 +141,24 @@ function App() {
     }
   };
 
-  const plusList = (listname, id, text) => {
+  const plusList = (listname, inputId, inputText) => {
     const todo = {
-      id,
-      text,
+      id: inputId,
+      text: inputText,
     };
 
     if (listname == doingList) {
-      setDoingList(...doingList, todo);
+      setDoingList(doingList.concat(todo));
     } else if (listname == doneList) {
-      setDoingList(...doneList, todo);
+      setDoingList(doneList.concat(todo));
     }
   };
 
   const removeList = (listname, id) => {
     if (listname == doingList) {
-      const newDoingList = doingList.filter((list) => list.id !== id);
-      console.log(newDoingList);
-      setDoingList(newDoingList);
+      setDoingList(doingList.filter((list) => list.id !== id));
     } else if (listname == doneList) {
       const newDoneList = doneList.filter((list) => list.id !== id);
-      console.log(newDoneList);
       setDoneList(newDoneList);
     }
   };
@@ -179,18 +176,15 @@ function App() {
         <Title> Doing ( {doingList.length} )</Title>
 
         <SubContainer>
-          {doingList.map((s) => (
+          {doingList.map((list) => (
             <RowContainer>
-              <TodoText
-                key={s.id}
-                // onClick={() => moveList(doingList, s.id, s.text)}
-                onClick={() => plusList(doneList, s.id, s.text)}
-              >
-                {s.text}
+              <TodoText onClick={() => moveList(doingList, list.id, list.text)}>
+                {list.text}
               </TodoText>
               <DeleteButton
-                key={s.id}
-                onClick={() => removeList(doingList, s.id)}
+                onClick={() => {
+                  removeList(doingList, list.id);
+                }}
               />
             </RowContainer>
           ))}
@@ -199,17 +193,17 @@ function App() {
         <Title> Done ( {doneList.length} )</Title>
 
         <SubContainer>
-          {doneList.map((s) => (
+          {doneList.map((list) => (
             <RowContainer>
               <TodoText
-                key={s.id}
-                onClick={() => moveList(doneList, s.id, s.text)}
+                key={list.id}
+                onClick={() => moveList(doneList, list.id, list.text)}
               >
-                {s.text}
+                {list.text}
               </TodoText>
               <DeleteButton
-                key={s.id}
-                onClick={() => removeList(doneList, s.id)}
+                key={list.id}
+                onClick={() => removeList(doneList, list.id)}
               />
             </RowContainer>
           ))}
