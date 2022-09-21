@@ -134,10 +134,10 @@ function App() {
   const moveList = (listname, id, text) => {
     if (listname == doingList) {
       plusList(doneList, id, text);
-      // removeList(doingList, id);
+      removeList(doingList, id);
     } else if (listname == doneList) {
       plusList(doingList, id, text);
-      // removeList(doneList, id);
+      removeList(doneList, id);
     }
   };
 
@@ -147,10 +147,13 @@ function App() {
       text: inputText,
     };
 
+    console.log(todo);
+
     if (listname == doingList) {
       setDoingList(doingList.concat(todo));
     } else if (listname == doneList) {
-      setDoingList(doneList.concat(todo));
+      setDoneList(doneList.concat(todo));
+      console.log(doneList);
     }
   };
 
@@ -195,15 +198,13 @@ function App() {
         <SubContainer>
           {doneList.map((list) => (
             <RowContainer>
-              <TodoText
-                key={list.id}
-                onClick={() => moveList(doneList, list.id, list.text)}
-              >
+              <TodoText onClick={() => moveList(doneList, list.id, list.text)}>
                 {list.text}
               </TodoText>
               <DeleteButton
-                key={list.id}
-                onClick={() => removeList(doneList, list.id)}
+                onClick={() => {
+                  removeList(doneList, list.id);
+                }}
               />
             </RowContainer>
           ))}
