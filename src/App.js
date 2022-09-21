@@ -90,12 +90,14 @@ const DeleteButton = styled.button`
   width: 2rem;
 `;
 
-const TodoText = styled.text`
+const TodoText = styled.button`
   line-height: 2rem;
   padding: 1rem;
   font-size: 1rem;
   text-align: center;
   color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 `;
 
 function App() {
@@ -128,6 +130,42 @@ function App() {
     setText('');
   };
 
+  // listname에서 다른 리스트로 요소 이동
+  const moveList = (listname, id, text) => {
+    if (listname == doingList) {
+      plusList(doneList, id, text);
+      // removeList(doingList, id);
+    } else if (listname == doneList) {
+      plusList(doingList, id, text);
+      // removeList(doneList, id);
+    }
+  };
+
+  const plusList = (listname, id, text) => {
+    const todo = {
+      id,
+      text,
+    };
+
+    if (listname == doingList) {
+      setDoingList(...doingList, todo);
+    } else if (listname == doneList) {
+      setDoingList(...doneList, todo);
+    }
+  };
+
+  const removeList = (listname, id) => {
+    if (listname == doingList) {
+      const newDoingList = doingList.filter((list) => list.id !== id);
+      console.log(newDoingList);
+      setDoingList(newDoingList);
+    } else if (listname == doneList) {
+      const newDoneList = doneList.filter((list) => list.id !== id);
+      console.log(newDoneList);
+      setDoneList(newDoneList);
+    }
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -139,10 +177,43 @@ function App() {
         </TodoForm>
 
         <Title> Doing ( {doingList.length} )</Title>
-        <TodoList todos={doingList} />
+
+        <SubContainer>
+          {doingList.map((s) => (
+            <RowContainer>
+              <TodoText
+                key={s.id}
+                // onClick={() => moveList(doingList, s.id, s.text)}
+                onClick={() => plusList(doneList, s.id, s.text)}
+              >
+                {s.text}
+              </TodoText>
+              <DeleteButton
+                key={s.id}
+                onClick={() => removeList(doingList, s.id)}
+              />
+            </RowContainer>
+          ))}
+        </SubContainer>
 
         <Title> Done ( {doneList.length} )</Title>
-        <DoneList todos={doneList} />
+
+        <SubContainer>
+          {doneList.map((s) => (
+            <RowContainer>
+              <TodoText
+                key={s.id}
+                onClick={() => moveList(doneList, s.id, s.text)}
+              >
+                {s.text}
+              </TodoText>
+              <DeleteButton
+                key={s.id}
+                onClick={() => removeList(doneList, s.id)}
+              />
+            </RowContainer>
+          ))}
+        </SubContainer>
       </Container>
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import TodoItem from './TodoItem';
 
 const SubContainer = styled.div`
   display: flex;
@@ -50,12 +51,13 @@ function TodoList({ todos }) {
     <>
       <SubContainer>
         {todos.map((list) => {
+          // <TodoItem id={list.id} text={list.text} />;
           <RowContainer>
             <TodoText>{list.text}</TodoText>
             <DeleteButton />
           </RowContainer>;
           {
-            console.log(todos);
+            console.log(list.id + ' ' + list.text);
           }
         })}
       </SubContainer>
