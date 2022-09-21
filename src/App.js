@@ -27,7 +27,7 @@ const Container = styled.div`
   height: 52rem;
   border-radius: 20px;
   background: #000000;
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 
 const SubContainer = styled.div`
@@ -108,24 +108,20 @@ const TodoText = styled.button`
 `;
 
 const Celebrate = styled.img`
-  display: none;
+  display: block;
   position: absolute;
   height: 30rem;
   width: 30rem;
 `;
 
 function App() {
-  const [cnt, setCnt] = useState(1);
-  // input 값
   const [text, setText] = useState('');
-  // DoingList에 넣을 값
   const [doingList, setDoingList] = useState([]);
-  // DoneList에 넣을 값
   const [doneList, setDoneList] = useState([]);
+  const [finish, setFinish] = useState(false);
 
   const onChange = (e) => {
     setText(e.target.value);
-    // setTextList([...textList, e.target.value]);
   };
 
   const onKeyPress = (e) => {
@@ -135,18 +131,25 @@ function App() {
   };
 
   const onReset = () => {
-    const todo = {
-      id: Date.now(),
-      text: text,
-    };
-    setDoingList(doingList.concat(todo));
-    // setCnt(cnt + 1);
-    setText('');
+    if (text.trim() == '') {
+      alert('한 글자 이상 입력해주세요');
+    } else {
+      const todo = {
+        id: Date.now(),
+        text: text,
+      };
+      setDoingList(doingList.concat(todo));
+      setText('');
+    }
   };
 
   // listname에서 다른 리스트로 요소 이동
   const moveList = (listname, id, text) => {
     if (listname == doingList) {
+      setFinish(true);
+      setTimeout(() => {
+        setFinish(false);
+      }, 1000);
       plusList(doneList, id, text);
       removeList(doingList, id);
     } else if (listname == doneList) {
@@ -184,7 +187,8 @@ function App() {
     <>
       <GlobalStyle />
       <Container>
-        <Celebrate src={firework} />
+        {finish ? <Celebrate src={firework} /> : <></>}
+
         <Title> To-Do</Title>
         <TodoForm>
           <TodoInput onKeyPress={onKeyPress} onChange={onChange} value={text} />
