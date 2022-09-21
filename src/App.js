@@ -1,8 +1,12 @@
+import TodoContainer from "./components/TodoContainer.js";
+import GlobalStyle from "./styles/GlobalStyle";
+
 function App() {
   return (
-    <div>
-      <h1>16기 프론트 화이팅~</h1>
-    </div>
+    <>
+      <GlobalStyle />
+      <TodoContainer />
+    </>
   );
 }
 
