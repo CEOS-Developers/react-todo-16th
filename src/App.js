@@ -6,10 +6,11 @@ import { Container ,ListContainer,ListHeaderContainer} from "./ContainerStyled";
 
 const App=()=>{
 
+  const week=['월','화','수','목','금','토','일'];
+
   const [tasks,setTasks]=useState([]);
 
   const nextId=useRef(1);
-
   const addTask=(text)=>{
       const todo= {
         id:nextId.current,
@@ -31,11 +32,15 @@ const App=()=>{
     );
   }
 
+  let todoTaskNum=0;
+  tasks.map(task=>task.done? todoTaskNum : todoTaskNum++);
+
   return(
     <Container>
 
       {/* 날짜 및 제목 */}
-        <Header color="grey" size="10px" marginBottom='0px' bold='normal'>2022년 9월 20일 화요일</Header>
+        <Header color="grey" size="10px" marginBottom='0px' bold='normal'> 
+          {new Date().getFullYear()+'년 '+(new Date().getMonth()+1)+'월 '+new Date().getDate()+'일 '+week[new Date().getDay()-1]+'요일'} </Header>
         <Header>To Do List</Header>
         
       {/* 인풋박스 */}
@@ -43,15 +48,15 @@ const App=()=>{
 
       {/* 할일 목록  */}
       <ListContainer>
-        <ListHeaderContainer>남은 할 일</ListHeaderContainer>
+        <ListHeaderContainer>남은 할 일 {todoTaskNum}개</ListHeaderContainer>
         { tasks.map((i)=>(
           i.done ? <></> :<TodoTask task={i} removeTask={removeTask} toggleTask={toggleTask} /> )
-        ) }
+        )}
       </ListContainer>
 
       {/* 남은 할 일 목록 */}
       <ListContainer>
-        <ListHeaderContainer color="grey">완료한 일</ListHeaderContainer>
+        <ListHeaderContainer color="grey">완료한 일 {tasks.length-todoTaskNum}개</ListHeaderContainer>
         { tasks.map((i)=>(
           i.done ? <DoneTask task={i} removeTask={removeTask} toggleTask={toggleTask}/>: <></> )
         ) }

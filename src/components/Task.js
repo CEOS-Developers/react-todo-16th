@@ -8,7 +8,7 @@ const TodoTask=({task,removeTask,toggleTask})=>{
         <TaskContainer>
             <Image src='img/circle.png' onClick={()=>toggleTask(task.id)} />
             <Text> {task.text} </Text>
-            <Image src='img/delete.png' onClick={()=>removeTask(task.id)} />
+            <Image left="20px" src='img/delete.png' onClick={()=>removeTask(task.id)} />
         </TaskContainer>
     )
 }
@@ -31,5 +31,6 @@ const Image=styled.img`
 
 const Text=styled.div`
     margin-left:10px;
+    margin-right:30px;
 `
 export  {TodoTask,DoneTask};
