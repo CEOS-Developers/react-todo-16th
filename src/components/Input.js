@@ -1,15 +1,31 @@
-import styled, { css } from 'styled-components';
+import styled from "styled-components";
+import useInput from "../hooks/useInput";
+import { TodoContext } from "../context/todoProvider";
+import { useContext } from "react";
 
 const Input = () => {
+  const todo = useInput();
+  const { todoDispatch } = useContext(TodoContext);
+
+  const todoData = {
+    id: new Date(),
+    text: todo.value,
+    isDone: false,
+  };
+
   return (
-        <>
-      <InputForm>
-        <InputText placeholder = "📍 Enter your to-do"/>
-        <InputButton>+</InputButton>
+    <>
+      <InputForm onSubmit={(e) => e.preventDefault()}>
+        <InputText {...todo} placeholder="📍 Enter your to-do" />
+        <InputButton
+          onClick={() => todoDispatch({ type: "TODO", value: todoData })}
+        >
+          +
+        </InputButton>
       </InputForm>
-        </>
-    );
-}
+    </>
+  );
+};
 
 const InputForm = styled.form`
   display: flex;
@@ -37,4 +53,3 @@ const InputButton = styled.button`
 `;
 
 export default Input;
-
