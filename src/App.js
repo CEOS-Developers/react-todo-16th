@@ -12,12 +12,17 @@ import {
   Text,
   DoneItem,
 } from './styles/ContainerStyle';
+import { useEffect } from 'react';
 
 function App() {
   // todo item, todo 배열, done 배열
   const [todo, setTodo] = useState('');
-  const [todos, setTodos] = useState([]);
-  const [dones, setDones] = useState([]);
+  const [todos, setTodos] = useState(() =>
+    JSON.parse(localStorage.getItem('todos'))
+  );
+  const [dones, setDones] = useState(() =>
+    JSON.parse(localStorage.getItem('dones'))
+  );
 
   // todo item의 id값 정해주기
   const todoId = useRef(0);
@@ -64,6 +69,7 @@ function App() {
     setDones(newDones);
   };
 
+  // todo <-> done 토글
   const toggleTodo = (item) => {
     if (item.type === 'TODO') {
       item.type = 'DONE';
@@ -75,6 +81,14 @@ function App() {
       deleteDone(item);
     }
   };
+
+  // 로컬스토리지에 todos, dones 저장
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+  useEffect(() => {
+    localStorage.setItem('dones', JSON.stringify(dones));
+  }, [dones]);
 
   return (
     <>
