@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import PostForm from './components/Post';
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -40,9 +41,23 @@ const Box = styled.div`
   margin: auto;
 `;
 
-const Header = styled.header`
+const Header = styled.h1`
   flex: 5;
   align-self: center;
+`;
+
+const DoingBox = styled.div`
+  flex: 30;
+  overflow: auto;
+`;
+
+const DoneBox = styled.div`
+  flex: 30;
+  overflow: auto;
+`;
+
+const Text = styled.span`
+  padding-left: 30px;
 `;
 
 function App() {
@@ -51,7 +66,15 @@ function App() {
       <GlobalStyle />
       <Box>
         <Header>My To Do List ^^</Header>
+        <PostForm />
         <hr />
+        <DoingBox>
+          <Text>Doing</Text>
+        </DoingBox>
+        <hr />
+        <DoingBox>
+          <Text>Done</Text>
+        </DoingBox>
       </Box>
     </>
   );
