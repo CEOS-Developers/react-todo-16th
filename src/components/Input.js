@@ -5,11 +5,10 @@ const Input=({addTask})=>{
 
     const [value,setValue]=useState('');
 
-      const onSubmit = (e)=>{
-          addTask(value);
-          e.preventDefault();
-
-          setValue(''); // value 값 초기화
+    const onSubmit = (e)=>{
+        addTask(value);
+        e.preventDefault();
+        setValue(''); // value 값 초기화
     }
 
     return(

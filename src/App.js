@@ -6,26 +6,11 @@ import { Container ,ListContainer,ListHeaderContainer} from "./ContainerStyled";
 
 const App=()=>{
 
-  const [tasks,setTasks]=useState([
-   /* {
-      id:1,
-      text:'To do List 만들기',
-      done:false,
-    },
-    {
-      id:2,
-      text:'방 청소하기',
-      done:false,
-    },
-    {
-      id:4,
-      text:'CEOS 과제하기',
-      done:true,
-    },*/
-  ])
+  const [tasks,setTasks]=useState([]);
 
   const nextId=useRef(1);
 
+  /* 할 일 추가 함수 */
   const addTask=(text)=>{
       const todo= {
         id:nextId.current,
@@ -36,7 +21,10 @@ const App=()=>{
       nextId.current+=1;
   }
 
-  console.log(tasks);
+  /* 삭제 함수 */
+  const removeTask=(i)=>{
+    setTasks(tasks.filter(task => task.id !== i));
+  }
 
   return(
     <Container>
@@ -52,7 +40,7 @@ const App=()=>{
       <ListContainer>
         <ListHeaderContainer>남은 할 일</ListHeaderContainer>
         { tasks.map((i)=>(
-          i.done ? <></> :<TodoTask task={i.text}/> )
+          i.done ? <></> :<TodoTask task={i} removeTask={removeTask} /> )
         ) }
       </ListContainer>
 
@@ -60,7 +48,7 @@ const App=()=>{
       <ListContainer>
         <ListHeaderContainer color="grey">완료한 일</ListHeaderContainer>
         { tasks.map((i)=>(
-          i.done ?<DoneTask task={i.text}/>: <></> )
+          i.done ? <DoneTask task={i} removeTask={removeTask} />: <></> )
         ) }
       </ListContainer>
 
