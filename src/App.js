@@ -47,6 +47,12 @@ function App() {
     setTodos(newTodos);
   };
 
+  // todos -> dones로 item 이동
+  const toggleTodo = (item) => {
+    setDones((curArr) => [item, ...curArr]);
+    deleteTodo(item.id);
+  };
+
   return (
     <div className="container">
       <div className="input-box">
@@ -65,12 +71,14 @@ function App() {
         </form>
       </div>
       <div className="list-box">
-        <div className="list-box__title">😩To Do</div>
+        <div className="list-box__title">😩To Do ({todos.length})</div>
         <ul className="list-box__list">
           {''}
           {todos.map((item) => (
-            <li className="list-box__text" key={item.id}>
-              {item.todo}
+            <li key={item.id}>
+              <div className="list-box__text" onClick={() => toggleTodo(item)}>
+                {item.todo}
+              </div>
               <FontAwesomeIcon
                 icon={faTrashCan}
                 onClick={() => deleteTodo(item.id)}
@@ -80,8 +88,24 @@ function App() {
         </ul>
       </div>
       <div className="done-box">
-        <div className="done-box__title">🥴Done</div>
-        <ul className="done-box__list"></ul>
+        <div className="done-box__title">🥴Done ({dones.length})</div>
+        <ul className="done-box__list">
+          {''}
+          {dones.map((item) => (
+            <li key={item.id}>
+              <div
+                className="done-box__text"
+                // onClick={() => toggleTodo(item)}
+              >
+                {item.todo}
+              </div>
+              <FontAwesomeIcon
+                icon={faTrashCan}
+                // onClick={() => deleteTodo(item.id)}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
