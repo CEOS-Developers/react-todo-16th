@@ -112,9 +112,11 @@ const Celebrate = styled.img`
 `;
 
 function App() {
+  // input으로 받을 값
   const [text, setText] = useState('');
   const [doingList, setDoingList] = useState([]);
   const [doneList, setDoneList] = useState([]);
+  // 불꽃효과를 위해 유저가 투두리스트를 완료하면 true로 바꿔줌
   const [finish, setFinish] = useState(false);
 
   const onChange = (e) => {
@@ -155,6 +157,7 @@ function App() {
     }
   };
 
+  // listname에 inputId를 id로 가지는 텍스트 추가
   const plusList = (listname, inputId, inputText) => {
     const todo = {
       id: inputId,
@@ -171,6 +174,7 @@ function App() {
     }
   };
 
+  // listname에서 해당 id 가지고 있는 리스트 찾아서 삭제
   const removeList = (listname, id) => {
     if (listname == doingList) {
       setDoingList(doingList.filter((list) => list.id !== id));
@@ -184,6 +188,7 @@ function App() {
     <>
       <GlobalStyle />
       <Container>
+        {/* finish가 true일 때만 불꽃놀이 효과 추가 */}
         {finish ? <Celebrate src={firework} /> : <></>}
 
         <Title> To-Do</Title>
@@ -197,9 +202,11 @@ function App() {
         <SubContainer>
           {doingList.map((list) => (
             <RowContainer>
+              {/* 텍스트 클릭하면 요소간 이동 가능 */}
               <TodoText onClick={() => moveList(doingList, list.id, list.text)}>
                 {list.text}
               </TodoText>
+              {/* 삭제 아이콘 클릭하면 요소 삭제 가능*/}
               <DeleteButton
                 onClick={() => {
                   removeList(doingList, list.id);
