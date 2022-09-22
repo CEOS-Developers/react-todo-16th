@@ -5,6 +5,19 @@ const GlobalStyle = createGlobalStyle`
     background-color: powderblue;
     font-family: 'SEBANG_Gothic_Bold';
   }
+
+  @font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    hr {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  }
 `;
 
 const Box = styled.div`
@@ -27,11 +40,19 @@ const Box = styled.div`
   margin: auto;
 `;
 
+const Header = styled.header`
+  flex: 5;
+  align-self: center;
+`;
+
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Box></Box>
+      <Box>
+        <Header>My To Do List ^^</Header>
+        <hr />
+      </Box>
     </>
   );
 }
