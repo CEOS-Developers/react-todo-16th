@@ -2,19 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import { TaskContainer } from "../ContainerStyled";
 
-const TodoTask=()=>{
+const TodoTask=({task})=>{
+
     return(
         <TaskContainer>
-            <div> To do List 만들기</div>
+            <Image src='img/circle.png' />
+            <Text> {task} </Text>
             <Image src='img/delete.png'/>
         </TaskContainer>
     )
 }
 
-const DoneTask=()=>{
+const DoneTask=({task})=>{
     return(
         <TaskContainer color="#ADB0AD">
-            To do List 만들기
+            <Image src='img/checkmark.png' />
+            <Text>{task}</Text>
             <Image src='img/delete.png'/>
         </TaskContainer>
     )
@@ -23,6 +26,10 @@ const DoneTask=()=>{
 const Image=styled.img`
     width: 16px;
     height: 16px;
-    margin-bottom:8px;
+    margin-bottom:7px;
+`
+
+const Text=styled.div`
+    margin-left:10px;
 `
 export  {TodoTask,DoneTask};

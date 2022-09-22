@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 import Input from "./components/Input";
 import { DoneTask, TodoTask } from "./components/Task";
 import { Container ,ListContainer,ListHeaderContainer} from "./ContainerStyled";
 
 const App=()=>{
+
+  const [tasks,setTasks]=useState([
+   /* {
+      id:1,
+      text:'To do List 만들기',
+      done:false,
+    },
+    {
+      id:2,
+      text:'방 청소하기',
+      done:false,
+    },
+    {
+      id:4,
+      text:'CEOS 과제하기',
+      done:true,
+    },*/
+  ])
+
+  const nextId=useRef(1);
+
+  const addTask=(text)=>{
+      const todo= {
+        id:nextId.current,
+        text,
+        done:false,
+      };
+      setTasks(tasks.concat(todo));
+      nextId.current+=1;
+  }
+
+  console.log(tasks);
 
   return(
     <Container>
@@ -14,18 +46,22 @@ const App=()=>{
         <Header>To Do List</Header>
         
       {/* 인풋박스 */}
-        <Input />
+        <Input addTask={addTask}/>
 
       {/* 할일 목록  */}
       <ListContainer>
         <ListHeaderContainer>남은 할 일</ListHeaderContainer>
-        <TodoTask/>
+        { tasks.map((i)=>(
+          i.done ? <></> :<TodoTask task={i.text}/> )
+        ) }
       </ListContainer>
 
       {/* 남은 할 일 목록 */}
       <ListContainer>
         <ListHeaderContainer color="grey">완료한 일</ListHeaderContainer>
-        <DoneTask/>
+        { tasks.map((i)=>(
+          i.done ?<DoneTask task={i.text}/>: <></> )
+        ) }
       </ListContainer>
 
     </Container>

@@ -31,7 +31,7 @@ const TaskContainer=styled.div`
   font-size: 13px;
   margin-left: 10px;
   color: ${props=>props.color|| 'black'};
-  padding-top: 2px;
+  padding:3px;
   display:flex;
   flex-direction:'row';
 `

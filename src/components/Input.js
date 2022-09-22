@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 
-const Input=()=>{
+const Input=({addTask})=>{
+
+    const [value,setValue]=useState('');
+
+      const onSubmit = (e)=>{
+          addTask(value);
+          e.preventDefault();
+
+          setValue(''); // value 값 초기화
+    }
+
     return(
-        <div style={{flexDirection:'row'}}>
-            <InputBox/>
-            <InputButton>+</InputButton>
-        </div>
+        <form style={{flexDirection:'row'}} onSubmit={onSubmit}>
+            <InputBox placeholder="할 일을 입력하세요" onChange={e=>setValue(e.target.value)} value={value} />
+            <InputButton type="submit">+</InputButton>
+        </form>
     )
 }
 
