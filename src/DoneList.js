@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import DoneItem from './DoneItem';
 
 const DoneListBlock = styled.div`
     background: white;
@@ -8,11 +9,22 @@ const DoneListBlock = styled.div`
     padding:3%;
 `
 
-const DoneList = () => {
+const DoneList = (props) => {
+    const {handleToToDo,dones}=props;
+    console.log(dones);
     return (
         <div>
             <DoneListBlock>
                 DONE
+                {
+                    dones.map((done) => (
+                        <DoneItem
+                        done={done}
+                        key={done.id}
+                        handleToToDo={handleToToDo}
+                        />
+                    ))
+                }
             </DoneListBlock>
         </div>
     );

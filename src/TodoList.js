@@ -10,7 +10,7 @@ const TodoListBlock = styled.div`
     border-bottom-style: dashed;
 `
 const TodoList = (props) => {
-    const {todos} = props;
+    const {handleToDone, todos} = props;
     console.log(todos);
     return (
         <div>
@@ -21,6 +21,7 @@ const TodoList = (props) => {
                         <Item
                         todo={todo}
                         key={todo.id}
+                        handleToDone={handleToDone}
                         />
                     ))
                 }

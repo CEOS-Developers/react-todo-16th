@@ -27,7 +27,7 @@ const ListTitle = (props) => {
     return (
         <div>
             <ListTitleBlock>
-                ListTitle
+                투두리스트
                 <form>
                     <input
                     type="text"
