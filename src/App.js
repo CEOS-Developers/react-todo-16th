@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import PostForm from './components/Post';
+import { useState } from 'react';
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -46,14 +47,15 @@ const Header = styled.h1`
   align-self: center;
 `;
 
-const DoingBox = styled.div`
+const Container = styled.ul`
   flex: 30;
   overflow: auto;
-`;
+  margin: 0;
+  padding-left: 0;
 
-const DoneBox = styled.div`
-  flex: 30;
-  overflow: auto;
+  li {
+    list-style-type: none;
+  }
 `;
 
 const Text = styled.span`
@@ -61,6 +63,8 @@ const Text = styled.span`
 `;
 
 function App() {
+  const [doing, setDoing] = useState([]);
+
   return (
     <>
       <GlobalStyle />
@@ -68,13 +72,13 @@ function App() {
         <Header>My To Do List ^^</Header>
         <PostForm />
         <hr />
-        <DoingBox>
-          <Text>Doing</Text>
-        </DoingBox>
+        <Container id="Doing">
+          <Text id="DoingText">Doing</Text>
+        </Container>
         <hr />
-        <DoingBox>
-          <Text>Done</Text>
-        </DoingBox>
+        <Container id="Done">
+          <Text id="DoneText">Done</Text>
+        </Container>
       </Box>
     </>
   );
