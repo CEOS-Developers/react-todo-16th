@@ -2,21 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import { TaskContainer } from "../ContainerStyled";
 
-const TodoTask=({task,removeTask})=>{
+const TodoTask=({task,removeTask,toggleTask})=>{
 
     return(
         <TaskContainer>
-            <Image src='img/circle.png' />
+            <Image src='img/circle.png' onClick={()=>toggleTask(task.id)} />
             <Text> {task.text} </Text>
             <Image src='img/delete.png' onClick={()=>removeTask(task.id)} />
         </TaskContainer>
     )
 }
 
-const DoneTask=({task,removeTask})=>{
+const DoneTask=({task,removeTask,toggleTask})=>{
     return(
         <TaskContainer color="#ADB0AD">
-            <Image src='img/checkmark.png' />
+            <Image src='img/checkmark.png'  onClick={()=>toggleTask(task.id)}/>
             <Text>{task.text}</Text>
             <Image src='img/delete.png' onClick={()=>removeTask(task.id)}/>
         </TaskContainer>

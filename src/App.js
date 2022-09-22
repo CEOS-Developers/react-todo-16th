@@ -10,7 +10,6 @@ const App=()=>{
 
   const nextId=useRef(1);
 
-  /* 할 일 추가 함수 */
   const addTask=(text)=>{
       const todo= {
         id:nextId.current,
@@ -21,9 +20,15 @@ const App=()=>{
       nextId.current+=1;
   }
 
-  /* 삭제 함수 */
   const removeTask=(i)=>{
     setTasks(tasks.filter(task => task.id !== i));
+  }
+
+  const toggleTask=(id)=>{
+    setTasks(
+      tasks.map(task =>
+        task.id === id ? { ...task, done: !task.done } : task ),
+    );
   }
 
   return(
@@ -40,7 +45,7 @@ const App=()=>{
       <ListContainer>
         <ListHeaderContainer>남은 할 일</ListHeaderContainer>
         { tasks.map((i)=>(
-          i.done ? <></> :<TodoTask task={i} removeTask={removeTask} /> )
+          i.done ? <></> :<TodoTask task={i} removeTask={removeTask} toggleTask={toggleTask} /> )
         ) }
       </ListContainer>
 
@@ -48,7 +53,7 @@ const App=()=>{
       <ListContainer>
         <ListHeaderContainer color="grey">완료한 일</ListHeaderContainer>
         { tasks.map((i)=>(
-          i.done ? <DoneTask task={i} removeTask={removeTask} />: <></> )
+          i.done ? <DoneTask task={i} removeTask={removeTask} toggleTask={toggleTask}/>: <></> )
         ) }
       </ListContainer>
 
