@@ -61,7 +61,7 @@ const ListTemplate = () => {
             <ListTemplateBlock>
                 <ListTitle onSubmit = {handleSubmit}/>
                 <TodoList handleToDone={handleToDone} handleRemove={handleRemove} todos = {todos}/>
-                <DoneList handleToToDo={handleToToDo} dones={dones}/>
+                <DoneList handleToToDo={handleToToDo} handleRemove={handleRemove} dones={dones}/>
             </ListTemplateBlock>
         </div>
     );

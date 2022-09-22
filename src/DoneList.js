@@ -10,18 +10,20 @@ const DoneListBlock = styled.div`
 `
 
 const DoneList = (props) => {
-    const {handleToToDo,dones}=props;
+    const {handleToToDo,handleRemove,dones}=props;
     console.log(dones);
     return (
         <div>
             <DoneListBlock>
                 DONE
+                ({dones.length})
                 {
                     dones.map((done) => (
                         <DoneItem
                         done={done}
                         key={done.id}
                         handleToToDo={handleToToDo}
+                        handleRemove={handleRemove}
                         />
                     ))
                 }
