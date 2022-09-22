@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import App from '../App';
 
 const Post = styled.form`
   flex: 5;
@@ -16,9 +18,30 @@ const Post = styled.form`
 `;
 
 const PostForm = () => {
+  const [input, setInput] = useState('');
+  //   const [adding, setAdding] = useState('');
+  const addToDo = (e) => {
+    e.preventDefault();
+    input.trim();
+    if (input) {
+      console.log(input); //여기에 input을 Doing List로 보내주는 코드
+      setInput('');
+    } else {
+      alert('Check plz :)');
+    }
+  };
+  const onChange = (e) => {
+    setInput(e.target.value);
+  };
   return (
-    <Post>
-      <input type="text" placeholder="Write Here!" id="addInput" />
+    <Post onSubmit={addToDo}>
+      <input
+        type="text"
+        placeholder="Write Here!"
+        id="addInput"
+        value={input}
+        onChange={onChange}
+      />
       <button type="submit" id="addBtn">
         add
       </button>

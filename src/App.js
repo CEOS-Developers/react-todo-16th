@@ -64,6 +64,7 @@ const Text = styled.span`
 
 function App() {
   const [doing, setDoing] = useState([]);
+  const [done, setDone] = useState([]);
 
   return (
     <>
