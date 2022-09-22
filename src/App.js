@@ -27,13 +27,11 @@ const Container = styled.div`
   height: 52rem;
   border-radius: 20px;
   background: #000000;
-  // border: 1px solid white;
 `;
 
 const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  // align-items: center;
   overflow: auto;
 
   width: 25rem;
@@ -83,8 +81,7 @@ const EnterButton = styled.img`
   margin-left: 0.5rem;
   height: 2rem;
   width: 2rem;
-  margin-bottom: -0.8rem;
-  // background-image: url('./img/plus.png');
+  margin-bottom: -0.8rem;=
 `;
 
 const DeleteButton = styled.img`
