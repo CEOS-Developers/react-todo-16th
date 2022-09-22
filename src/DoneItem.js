@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DoneItem = (props) => {
-    const {done, id, handleToToDo,handleRemove} = props;
+    const {done, handleToToDo,handleRemove} = props;
 
     const func = (e) => {
         handleToToDo(done.text,done.id);

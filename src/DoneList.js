@@ -7,6 +7,7 @@ const DoneListBlock = styled.div`
     width: 300px;
     height: 250px;
     padding:3%;
+    overflow-x: scroll;
 `
 
 const DoneList = (props) => {

@@ -8,6 +8,7 @@ const TodoListBlock = styled.div`
     height: 250px;
     padding:3%;
     border-bottom-style: dashed;
+    overflow-x: scroll;
 `
 const TodoList = (props) => {
     const {handleToDone, handleRemove, todos} = props;
