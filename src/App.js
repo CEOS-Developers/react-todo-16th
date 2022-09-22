@@ -6,6 +6,7 @@ import { computeHeadingLevel } from '@testing-library/react';
 import GlobalStyle from './GlobalStyle';
 
 function App() {
+  //useState이용
   const [inputs, setInputs] = useState({
     input: '',
   });
@@ -13,6 +14,7 @@ function App() {
   const [list, setList] = useState([]);
   const { input } = inputs;
 
+  //input 박스에서 onChange함수 호출 시 일어나는 일
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputs({
@@ -21,16 +23,16 @@ function App() {
     });
   };
 
+  //nextId 1부터 사용
   const nextId = useRef(1);
 
+  //input 입력시 만들어지는 배열 요소 함수
   const onCreate = () => {
     const todo = {
       id: nextId.current,
       input,
       toggle: true,
     };
-
-    const findInput = list.find((todo) => todo.input === input);
 
     console.log(todo);
     if (input.trim() === '') {
@@ -68,12 +70,10 @@ function App() {
         );
 
         const moveI = list.find((todo) => todo.input === input);
-        console.log(moveI.input);
 
         setDlist(dlist.concat(moveI));
         setList(list.filter((todo) => todo.input !== input));
       } else {
-        console.log('오류');
       }
     },
     [list, dlist]
@@ -91,12 +91,9 @@ function App() {
         );
 
         const moveI = dlist.find((todo) => todo.input === input);
-        console.log(moveI);
 
         setList(list.concat(moveI));
         setDlist(dlist.filter((todo) => todo.input !== input));
-      } else {
-        console.log('오류');
       }
     },
     [list, dlist]

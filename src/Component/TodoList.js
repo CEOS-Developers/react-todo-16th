@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//화면에 표시되는 todo형식
 function Todo({ todo, onRemove, onToggle }) {
   return (
     <StyledText>
@@ -10,6 +11,7 @@ function Todo({ todo, onRemove, onToggle }) {
   );
 }
 
+//app.js에 넘어가는 함수 구현
 function TodoList({ todos, onRemove, onToggle }) {
   return (
     <StyledBlock>
@@ -24,6 +26,8 @@ function TodoList({ todos, onRemove, onToggle }) {
     </StyledBlock>
   );
 }
+
+//styled컴포넌트
 const StyledBlock = styled.div`
   font-size: 15px;
   display: flex;

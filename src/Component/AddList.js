@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//인풋 박스 함수
 function AddList({ input, onChange, onCreate }) {
   return (
     <StyledAddList>
@@ -29,6 +30,7 @@ function AddList({ input, onChange, onCreate }) {
     </StyledAddList>
   );
 }
+//styled컴포넌트
 const StyledAddList = styled.div`
   text-align: center;
   font-weight: bolder;
