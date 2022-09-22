@@ -1,7 +1,17 @@
-import './App.css';
 import { useState, useRef } from 'react';
 import { faCirclePlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import GlobalStyle from './styles/GlobalStyle';
+import {
+  Container,
+  Title,
+  Wrapper,
+  Input,
+  Btn,
+  Text,
+  DoneItem,
+} from './styles/ContainerStyle';
 
 function App() {
   // todo item, todo 배열, done 배열
@@ -28,6 +38,7 @@ function App() {
     // todo에 id값 부여
     const newTodo = {
       id: todoId.current,
+      type: 'TODO',
       todo,
     };
 
@@ -42,72 +53,81 @@ function App() {
   };
 
   // todo 삭제 이후 todos 배열 다시 만들기
-  const deleteTodo = (delId) => {
-    const newTodos = todos.filter((item) => item.id !== delId);
+  const deleteTodo = (delItem) => {
+    const newTodos = todos.filter((item) => item.id !== delItem.id);
     setTodos(newTodos);
   };
 
-  // todos -> dones로 item 이동
+  // done 삭제 이후 dones 배열 다시 만들기
+  const deleteDone = (delItem) => {
+    const newDones = dones.filter((item) => item.id !== delItem.id);
+    setDones(newDones);
+  };
+
   const toggleTodo = (item) => {
-    setDones((curArr) => [item, ...curArr]);
-    deleteTodo(item.id);
+    if (item.type === 'TODO') {
+      item.type = 'DONE';
+      setDones((curArr) => [item, ...curArr]);
+      deleteTodo(item);
+    } else {
+      item.type = 'TODO';
+      setTodos((curArr) => [item, ...curArr]);
+      deleteDone(item);
+    }
   };
 
   return (
-    <div className="container">
-      <div className="input-box">
-        <div className="input-box__title">👀투두리스트👀</div>
-        <form className="input-box__content" onSubmit={createTodo} action="">
-          <input
-            className="input-box__input"
-            onChange={insertTodo}
-            value={todo}
-            type="text"
-            placeholder="할 일을 입력하세요"
-          />
-          <button>
-            <FontAwesomeIcon icon={faCirclePlus} />
-          </button>
-        </form>
-      </div>
-      <div className="list-box">
-        <div className="list-box__title">😩To Do ({todos.length})</div>
-        <ul className="list-box__list">
-          {''}
-          {todos.map((item) => (
-            <li key={item.id}>
-              <div className="list-box__text" onClick={() => toggleTodo(item)}>
-                {item.todo}
-              </div>
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                onClick={() => deleteTodo(item.id)}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="done-box">
-        <div className="done-box__title">🥴Done ({dones.length})</div>
-        <ul className="done-box__list">
-          {''}
-          {dones.map((item) => (
-            <li key={item.id}>
-              <div
-                className="done-box__text"
-                // onClick={() => toggleTodo(item)}
-              >
-                {item.todo}
-              </div>
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                // onClick={() => deleteTodo(item.id)}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <>
+      <GlobalStyle />
+      <Container>
+        <Wrapper input>
+          <Title>👀투두리스트👀</Title>
+          <form onSubmit={createTodo} action="">
+            <Input
+              onChange={insertTodo}
+              value={todo}
+              type="text"
+              placeholder="할 일을 입력하세요"
+            />
+            <Btn>
+              <FontAwesomeIcon icon={faCirclePlus} />
+            </Btn>
+          </form>
+        </Wrapper>
+        <Wrapper todo>
+          <Title>😩To Do ({todos.length})</Title>
+          <ul>
+            {todos.map((item) => (
+              <li key={item.id}>
+                <Text onClick={() => toggleTodo(item)}>{item.todo}</Text>
+                <Btn>
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    onClick={() => deleteTodo(item)}
+                  />
+                </Btn>
+              </li>
+            ))}
+          </ul>
+        </Wrapper>
+        <Wrapper done>
+          <Title>🥴Done ({dones.length})</Title>
+          <ul>
+            {dones.map((item) => (
+              <DoneItem key={item.id}>
+                <Text onClick={() => toggleTodo(item)}>{item.todo}</Text>
+                <Btn>
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    onClick={() => deleteDone(item)}
+                  />
+                </Btn>
+              </DoneItem>
+            ))}
+          </ul>
+        </Wrapper>
+      </Container>
+    </>
   );
 }
 
