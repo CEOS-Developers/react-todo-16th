@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const ListContainer = styled.ul`
@@ -12,8 +13,19 @@ const ListContainer = styled.ul`
   }
 `;
 
-const Done = () => {
-  return <ListContainer />;
+const Title = styled.span`
+  padding-left: 30px;
+`;
+
+const Done = ({ id }) => {
+  const [cnt, setCnt] = useState(0);
+  return (
+    <ListContainer>
+      <Title>
+        {id} ({cnt})
+      </Title>
+    </ListContainer>
+  );
 };
 
 export default Done;

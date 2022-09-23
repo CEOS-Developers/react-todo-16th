@@ -17,7 +17,14 @@ const Post = styled.form`
 `;
 
 const Form = () => {
-  return <Post />;
+  return (
+    <Post>
+      <input id="addInput" type="text" placeholder="Write Here!" />
+      <button type="submit" id="addBtn">
+        add
+      </button>
+    </Post>
+  );
 };
 
 export default Form;

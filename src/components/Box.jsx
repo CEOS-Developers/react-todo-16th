@@ -40,9 +40,9 @@ const Box = () => {
       <Header>My To Do List ^^</Header>
       <Form />
       <hr />
-      <Doing />
+      <Doing id="doing" />
       <hr />
-      <Done />
+      <Done id="done" />
     </ToDoBox>
   );
 };
