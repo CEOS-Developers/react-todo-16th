@@ -23,7 +23,7 @@ const Title = styled.span`
   padding-left: 30px;
 `;
 
-const Doing = ({ id, list, cnt, toggle }) => {
+const Doing = ({ id, list, cnt, toggle, onDelete }) => {
   return (
     <ListContainer>
       <Title>
@@ -34,7 +34,7 @@ const Doing = ({ id, list, cnt, toggle }) => {
           <li id={li.id} key={li.id}>
             {li.content}
             <Btn onClick={() => toggle(li.id)}>✅</Btn>
-            <Btn id="delete">❌</Btn>
+            <Btn onClick={() => onDelete(li.id)}>❌</Btn>
           </li>
         )
       )}

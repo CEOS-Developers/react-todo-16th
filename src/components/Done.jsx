@@ -22,7 +22,7 @@ const Title = styled.span`
 const Btn = styled.button`
   margin-left: 10px;
 `;
-const Done = ({ id, list, cnt, toggle }) => {
+const Done = ({ id, list, cnt, toggle, onDelete }) => {
   return (
     <ListContainer>
       <Title>
@@ -33,7 +33,7 @@ const Done = ({ id, list, cnt, toggle }) => {
           <li key={li.id}>
             {li.content}
             <Btn onClick={() => toggle(li.id)}>⬆️</Btn>
-            <Btn id="delete">❌</Btn>
+            <Btn onClick={() => onDelete(li.id)}>❌</Btn>
           </li>
         ) : undefined
       )}

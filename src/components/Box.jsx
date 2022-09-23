@@ -62,14 +62,30 @@ const Box = () => {
     );
   };
 
+  const onDelete = (id) => {
+    setList(list.filter((li) => li.id !== id));
+  };
+
   return (
     <ToDoBox>
       <Header>My To Do List ^^</Header>
       <Form getContent={getContent} />
       <hr />
-      <Doing id="doing" list={list} cnt={doingCnt} toggle={toggle} />
+      <Doing
+        id="doing"
+        list={list}
+        cnt={doingCnt}
+        toggle={toggle}
+        onDelete={onDelete}
+      />
       <hr />
-      <Done id="done" list={list} cnt={doneCnt} toggle={toggle} />
+      <Done
+        id="done"
+        list={list}
+        cnt={doneCnt}
+        toggle={toggle}
+        onDelete={onDelete}
+      />
     </ToDoBox>
   );
 };
