@@ -15,10 +15,12 @@ const Title = styled.span`
   padding-left: 30px;
 `;
 
-const Container = ({ id }) => {
+const Container = ({ id, cnt }) => {
   return (
     <ListContainer>
-      <Title>{id}</Title>
+      <Title>
+        {id} ({cnt})
+      </Title>
     </ListContainer>
   );
 };

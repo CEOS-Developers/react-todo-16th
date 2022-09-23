@@ -55,9 +55,8 @@ function App() {
 
   const getInputText = (t) => {
     setInputText(t);
-    setDoing({ ...doing } + t);
+    setDoing([...doing, t]);
   };
-
   return (
     <>
       <GlobalStyle />
@@ -65,9 +64,13 @@ function App() {
         <Header>My To Do List ^^</Header>
         <PostForm getInputText={getInputText} />
         <hr />
-        <Container id="Doing" value={inputText} />
+        <Container id="Doing" value={inputText} cnt={doing.length}>
+          <Box />
+        </Container>
         <hr />
-        <Container id="Done" />
+        <Container id="Done" cnt={done.length}>
+          <Box />
+        </Container>
       </Box>
     </>
   );
