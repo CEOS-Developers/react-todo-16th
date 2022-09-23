@@ -35,10 +35,21 @@ const Header = styled.h1`
 `;
 
 const Box = () => {
+  const [cnt, setCnt] = useState(0);
+  const [list, setList] = useState({});
+  const getContent = (li) => {
+    setCnt((cnt) => cnt + 1);
+    const addLi = {
+      id: cnt,
+      text: li,
+    };
+    setList({ ...list, addLi });
+    console.log(list);
+  };
   return (
     <ToDoBox>
       <Header>My To Do List ^^</Header>
-      <Form />
+      <Form getContent={getContent} />
       <hr />
       <Doing id="doing" />
       <hr />

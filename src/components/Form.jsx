@@ -16,10 +16,27 @@ const Post = styled.form`
   }
 `;
 
-const Form = () => {
+const Form = ({ getContent }) => {
+  const [input, setInput] = useState({});
+
+  const onChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const onSubmit = (t) => {
+    t.preventDefault();
+    getContent(t);
+    setInput('');
+  };
   return (
-    <Post>
-      <input id="addInput" type="text" placeholder="Write Here!" />
+    <Post onSubmit={onSubmit}>
+      <input
+        id="addInput"
+        type="text"
+        value={input}
+        placeholder="Write Here!"
+        onChange={onChange}
+      />
       <button type="submit" id="addBtn">
         add
       </button>
