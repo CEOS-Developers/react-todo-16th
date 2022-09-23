@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Doing from './Doing';
+import Done from './Done';
+import Form from './Form';
 
 const ToDoBox = styled.div`
   position: absolute;
@@ -19,10 +22,29 @@ const ToDoBox = styled.div`
   box-shadow: 1px 1px 3px 1px #dadce0;
   line-height: 1;
   margin: auto;
+
+  hr {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+`;
+
+const Header = styled.h1`
+  flex: 5;
+  align-self: center;
 `;
 
 const Box = () => {
-  return <ToDoBox />;
+  return (
+    <ToDoBox>
+      <Header>My To Do List ^^</Header>
+      <Form />
+      <hr />
+      <Doing />
+      <hr />
+      <Done />
+    </ToDoBox>
+  );
 };
 
 export default Box;

@@ -14,16 +14,8 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 
-    hr {
-      width: 100%;
-      margin-bottom: 30px;
-    }
-  }
-`;
 
-const Header = styled.h1`
-  flex: 5;
-  align-self: center;
+  }
 `;
 
 function App() {

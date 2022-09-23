@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import Container from './Container';
 
 const Post = styled.form`
   flex: 5;
@@ -21,7 +20,7 @@ const PostForm = (props) => {
   const [input, setInput] = useState('');
   const addToDo = (e) => {
     e.preventDefault();
-    input.trim();
+    //input trim하는 기능 만들어야함 ㅠㅠ 어케하징
     if (input) {
       props.getInputText(input);
       setInput('');
