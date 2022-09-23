@@ -45,7 +45,6 @@ const reducer = (state, action) => {
 const TodoProvider = ({ children }) => {
   const [state, todoDispatch] = useReducer(reducer, initialState);
   localStorage.setItem("itemList", JSON.stringify(state.itemList));
-  console.log("provider", state.itemList);
 
   return (
     <TodoContext.Provider
