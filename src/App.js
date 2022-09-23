@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "./style.css";
 import DoneListBox from "./component/DoneListBox";
 import InputBox from "./component/InputBox";
@@ -10,10 +10,24 @@ function App() {
     { id: 2, text: "yayaya", checked: false },
   ]);
 
+  let nextId = 3;
+  const onConcat = useCallback(
+    (text) => {
+      const todo = {
+        id: nextId,
+        text,
+        checked: false,
+      };
+      setTodos(todos.concat(todo));
+      nextId--;
+    },
+    [todos]
+  );
+
   return (
     <div className="wrapper">
       <div className="container">
-        <InputBox />
+        <InputBox onConcat={onConcat} />
         <TodoListBox todos={todos} />
         <DoneListBox />
       </div>
