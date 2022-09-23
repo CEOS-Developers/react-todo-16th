@@ -9,7 +9,7 @@ const Item = (props) => {
   return (
     <ItemSection>
       <h2>{props.title}</h2>
-      <ItemList>
+      <ItemList done={props.done}>
         {renderList.map((item) => {
           return <TodoItem key={item.id} item={item} />;
         })}
@@ -48,6 +48,9 @@ const ItemList = styled.ul`
   padding-left: 1.5rem;
   margin-top: 0.5rem;
   overflow: auto;
+  color: ${(props) => (props.done === true ? "gray" : "black")};
+  text-decoration: ${(props) =>
+    props.done === true ? "line-through " : "none"};
 `;
 
 export default Item;
