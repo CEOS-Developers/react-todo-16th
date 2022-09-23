@@ -42,6 +42,7 @@ const TodoItem = (props) => {
 const ItemSection = styled.section`
   flex: 0.5;
   border-top: 1px solid rgb(213, 213, 213);
+  overflow: auto;
 `;
 
 const ItemList = styled.ul`
