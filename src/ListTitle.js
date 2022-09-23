@@ -20,10 +20,12 @@ const ButtonStyle = styled.button`
 const ListTitle = (props) => {
     const [todo, setTodo] = useState("");
 
+    // input 값 todo에 반영
     const handleChange = (e) => {
         setTodo(e.target.value);
     };
 
+    // todo 값 위 컴포넌트로 보내서 todo list에 저장하기
     const handleSubmit = (e) => {
         e.preventDefault();
         if(!todo || todo.trim()===""){
