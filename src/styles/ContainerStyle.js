@@ -74,3 +74,5 @@ export const DoneItem = styled.li`
   color: lightgray;
   text-decoration-line: line-through;
 `;
+
+export const List = styled.ul``;
