@@ -20,10 +20,15 @@ const Item = (props) => {
 };
 
 const TodoItem = (props) => {
+  const { todoDispatch } = useContext(TodoContext);
   return (
     <li>
       <span>{props.item.text}</span>
-      <button>🧹</button>
+      <button
+        onClick={() => todoDispatch({ type: "REMOVE", value: props.item.id })}
+      >
+        🧹
+      </button>
     </li>
   );
 };

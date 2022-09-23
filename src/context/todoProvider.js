@@ -18,6 +18,11 @@ const reducer = (state, action) => {
         item: action.value,
         itemList: [...state.itemList, action.value],
       };
+    case "REMOVE":
+      return {
+        ...state,
+        itemList: state.itemList.filter((item) => item.id !== action.value),
+      };
     default:
       throw new Error();
   }
