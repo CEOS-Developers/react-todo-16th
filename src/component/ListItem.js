@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { AiFillDelete, AiOutlineCheckCircle } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
+import { BsCircle, BsCheckCircleFill } from "react-icons/bs";
 
 const Item = styled.div`
   display: flex;
@@ -13,13 +14,15 @@ const Item = styled.div`
   }
 `;
 
-const ListItem = () => {
+const ListItem = ({ todo }) => {
+  const { text, checked } = todo;
+
   return (
     <Item>
       <div className="check">
-        <AiOutlineCheckCircle />
+        {checked ? <BsCheckCircleFill /> : <BsCircle />}
       </div>
-      <div className="text">할 일</div>
+      <div className="text">{text}</div>
       <div className="delete">
         <AiFillDelete />
       </div>
