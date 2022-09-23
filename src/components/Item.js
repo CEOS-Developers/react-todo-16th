@@ -21,9 +21,17 @@ const Item = (props) => {
 
 const TodoItem = (props) => {
   const { todoDispatch } = useContext(TodoContext);
+
+  const handleTodoItemClick = (item) => {
+    item.isDone = item.isDone ? false : true;
+    todoDispatch({ type: "TOGGLE", value: item.id });
+  };
+
   return (
     <li>
-      <span>{props.item.text}</span>
+      <span onClick={() => handleTodoItemClick(props.item)}>
+        {props.item.text}
+      </span>
       <button
         onClick={() => todoDispatch({ type: "REMOVE", value: props.item.id })}
       >

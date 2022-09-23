@@ -23,6 +23,18 @@ const reducer = (state, action) => {
         ...state,
         itemList: state.itemList.filter((item) => item.id !== action.value),
       };
+    case "TOGGLE":
+      const reaminList = state.itemList.filter(
+        (item) => item.id !== action.value
+      );
+      const toggleItem = state.itemList.find(
+        (item) => item.id === action.value
+      );
+      toggleItem.isDone = toggleItem.isDone ? false : true;
+      return {
+        ...state,
+        itemList: [...reaminList, toggleItem],
+      };
     default:
       throw new Error();
   }
@@ -31,7 +43,7 @@ const reducer = (state, action) => {
 const TodoProvider = ({ children }) => {
   const [state, todoDispatch] = useReducer(reducer, initialState);
   localStorage.setItem("itemList", JSON.stringify(state.itemList));
-  console.log(state.itemList);
+  console.log("provider", state.itemList);
 
   return (
     <TodoContext.Provider
