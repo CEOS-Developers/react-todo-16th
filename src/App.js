@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import PostForm from './components/Post';
+import Container from './components/Container';
 import { useState } from 'react';
 
 const GlobalStyle = createGlobalStyle`
@@ -47,39 +48,26 @@ const Header = styled.h1`
   align-self: center;
 `;
 
-const Container = styled.ul`
-  flex: 30;
-  overflow: auto;
-  margin: 0;
-  padding-left: 0;
-
-  li {
-    list-style-type: none;
-  }
-`;
-
-const Text = styled.span`
-  padding-left: 30px;
-`;
-
 function App() {
   const [doing, setDoing] = useState([]);
   const [done, setDone] = useState([]);
+  const [inputText, setInputText] = useState(''); //등록했을 때 인풋텍스트 받아오는거 까지 한듯?
+
+  const getInputText = (t) => {
+    setInputText(t);
+    setDoing({ ...doing } + t);
+  };
 
   return (
     <>
       <GlobalStyle />
       <Box>
         <Header>My To Do List ^^</Header>
-        <PostForm />
+        <PostForm getInputText={getInputText} />
         <hr />
-        <Container id="Doing">
-          <Text id="DoingText">Doing</Text>
-        </Container>
+        <Container id="Doing" value={inputText} />
         <hr />
-        <Container id="Done">
-          <Text id="DoneText">Done</Text>
-        </Container>
+        <Container id="Done" />
       </Box>
     </>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import App from '../App';
+import Container from './Container';
 
 const Post = styled.form`
   flex: 5;
@@ -17,14 +17,13 @@ const Post = styled.form`
   }
 `;
 
-const PostForm = () => {
+const PostForm = (props) => {
   const [input, setInput] = useState('');
-  //   const [adding, setAdding] = useState('');
   const addToDo = (e) => {
     e.preventDefault();
     input.trim();
     if (input) {
-      console.log(input); //여기에 input을 Doing List로 보내주는 코드
+      props.getInputText(input);
       setInput('');
     } else {
       alert('Check plz :)');
