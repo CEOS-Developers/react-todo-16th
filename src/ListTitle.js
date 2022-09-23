@@ -5,8 +5,17 @@ const ListTitleBlock = styled.div`
     background: white;
     width: 300px;
     height: 70px;
-    padding:3%;
     border-bottom-style: dashed;
+`
+
+const InputStyle = styled.input`
+    width: 230px;
+    height: 30px;
+`
+
+const ButtonStyle = styled.button`
+    background-color:white;
+    border: 0;
 `
 const ListTitle = (props) => {
     const [todo, setTodo] = useState("");
@@ -29,16 +38,16 @@ const ListTitle = (props) => {
             <ListTitleBlock>
                 투두리스트
                 <form>
-                    <input
+                    <InputStyle
                     type="text"
                     placeholder='할 일을 입력하세요'
                     value={todo}
                     onChange={handleChange}
                     />
-                    <button 
+                    <ButtonStyle 
                     type='submit'
                     onClick={handleSubmit}
-                    >+</button>
+                    >➕</ButtonStyle>
                 </form>
             </ListTitleBlock>
         </div>

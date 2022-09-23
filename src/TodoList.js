@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Item from './Item';
+import TodoItem from './TodoItem';
 
 const TodoListBlock = styled.div`
     background: white;
     width: 300px;
     height: 250px;
-    padding:3%;
     border-bottom-style: dashed;
     overflow-x: scroll;
 `
@@ -15,11 +14,11 @@ const TodoList = (props) => {
     return (
         <div>
             <TodoListBlock>
-                TODO
+                ✔️TODO
                 ({todos.length})
                 {
                     todos.map((todo) => (
-                        <Item
+                        <TodoItem
                         todo={todo}
                         key={todo.id}
                         onChangeDone={onChangeDone}

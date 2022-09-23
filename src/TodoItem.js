@@ -9,25 +9,25 @@ const ButtonStyle = styled.button`
     background: white;
     border: 0;
 `
-const DoneItem = (props) => {
-    const {done, onChangeTodo,onRemove} = props;
+const TodoItem = (props) => {
+    const {todo, onChangeDone, onRemove} = props;
 
-    // done -> todo
+    // todo -> done
     const handleChange = (e) => {
-        onChangeTodo(done.text,done.id);
+        onChangeDone(todo.text, todo.id);
     }
 
     // 항목 삭제
     const handleRemove = (e) => {
-        onRemove(done.id);
+        onRemove(todo.id);
     }
 
     return (
         <ItemStyle>
-            <ButtonStyle onClick={handleChange}>{done.text}</ButtonStyle>
+            <ButtonStyle onClick={handleChange}>{todo.text}</ButtonStyle>
             <ButtonStyle onClick={handleRemove}>✖</ButtonStyle>
         </ItemStyle>
     );
 };
 
-export default DoneItem;
+export default TodoItem;

@@ -6,7 +6,6 @@ const DoneListBlock = styled.div`
     background: white;
     width: 300px;
     height: 250px;
-    padding:3%;
     overflow-x: scroll;
 `
 
@@ -15,7 +14,7 @@ const DoneList = (props) => {
     return (
         <div>
             <DoneListBlock>
-                DONE
+                ⭕DONE
                 ({dones.length})
                 {
                     dones.map((done) => (

@@ -6,11 +6,13 @@ import DoneList from './DoneList';
 
 const ListTemplateBlock = styled.div`
     display: flex;
-    height: 100vh;
+    height: 650px;
+    width: 350px;
     flex-direction: column;
-    background: black;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    border-radius: 30px;
 `
 const ListTemplate = () => {
     const [todos,setTodos] = useState([]);
@@ -18,6 +20,7 @@ const ListTemplate = () => {
 
     const id = useRef(0);
 
+    // todo에 항목 추가
     const handleSubmit = (text) => {
         const todo = {
             id: id.current,
@@ -27,6 +30,7 @@ const ListTemplate = () => {
         id.current++;
     }
 
+    // todo -> done
     const handleChangeDone = (text,num) => {
         const done = {
             id: num,
@@ -37,6 +41,7 @@ const ListTemplate = () => {
         setTodos([...result]);
     }
 
+    // done -> todo
     const handleChangeTodo = (text,num) => {
         const todo = {
             id: num,
@@ -47,6 +52,7 @@ const ListTemplate = () => {
         setDones([...result]);
     }
 
+    // 항목 삭제
     const handleRemove = (num) => {
         const resultTodo = todos.filter(todo => todo.id !== num);
         const resultDone = dones.filter(done => done.id !== num);
