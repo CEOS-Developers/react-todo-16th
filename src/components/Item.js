@@ -21,6 +21,7 @@ const Item = (props) => {
 
 const TodoItem = (props) => {
   const { todoDispatch } = useContext(TodoContext);
+  console.log("왜안뜨냠");
 
   const handleTodoItemClick = () => {
     props.item.isDone = props.item.isDone ? false : true;
