@@ -17,15 +17,15 @@ const Post = styled.form`
 `;
 
 const Form = ({ getContent }) => {
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState('');
 
   const onChange = (e) => {
     setInput(e.target.value);
   };
 
-  const onSubmit = (t) => {
-    t.preventDefault();
-    getContent(t);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    getContent(input);
     setInput('');
   };
   return (

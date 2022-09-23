@@ -36,14 +36,14 @@ const Header = styled.h1`
 
 const Box = () => {
   const [cnt, setCnt] = useState(0);
-  const [list, setList] = useState({});
+  const [list, setList] = useState([]);
   const getContent = (li) => {
     setCnt((cnt) => cnt + 1);
     const addLi = {
       id: cnt,
-      text: li,
+      content: li,
     };
-    setList({ ...list, addLi });
+    setList([...list, { id: addLi.id, content: addLi.content }]);
     console.log(list);
   };
   return (
