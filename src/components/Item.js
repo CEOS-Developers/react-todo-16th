@@ -3,22 +3,29 @@ import styled from "styled-components";
 import { TodoContext } from "../context/todoProvider";
 
 const Item = (props) => {
+  const { itemList } = useContext(TodoContext);
+  const renderList = itemList.filter((item) => item.isDone === props.done);
+  console.log(renderList);
+
   return (
     <ItemSection>
       <h2>{props.title}</h2>
       <ItemList>
-        <TodoItem done={props.done} />
+        {renderList.map((item) => {
+          return <TodoItem key={item.id} item={item} />;
+        })}
       </ItemList>
     </ItemSection>
   );
 };
 
 const TodoItem = (props) => {
-  const context = useContext(TodoContext);
-  const todoList = context.itemList.filter((item) => {
-    return item.isDone === props.done;
-  });
-  return todoList.map((item) => <li key={item.id}>{item.text}</li>);
+  return (
+    <li>
+      <span>{props.item.text}</span>
+      <button>🧹</button>
+    </li>
+  );
 };
 
 const ItemSection = styled.section`

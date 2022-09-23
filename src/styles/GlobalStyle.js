@@ -28,6 +28,14 @@ h2 {
 li {
     list-style: none;
 }
+
+button {
+  border: 0;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+}
 `;
 
 export default GlobalStyle;
