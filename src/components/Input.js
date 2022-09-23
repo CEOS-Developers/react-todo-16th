@@ -13,15 +13,20 @@ const Input = () => {
     isDone: false,
   };
 
+  const handleInputButtonClick = () => {
+    if (todoData.text.replace(/ /g, "")) {
+      todoDispatch({ type: "TODO", value: todoData });
+      todo.setValue("");
+    } else {
+      alert("Don't just enter spaces! 👀");
+    }
+  };
+
   return (
     <>
       <InputForm onSubmit={(e) => e.preventDefault()}>
         <InputText {...todo} placeholder="📍 Enter your to-do" />
-        <InputButton
-          onClick={() => todoDispatch({ type: "TODO", value: todoData })}
-        >
-          +
-        </InputButton>
+        <InputButton onClick={handleInputButtonClick}>+</InputButton>
       </InputForm>
     </>
   );
