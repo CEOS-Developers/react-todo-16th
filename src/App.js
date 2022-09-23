@@ -24,11 +24,16 @@ function App() {
     [todos]
   );
 
+  const onDelete = useCallback((id) => {
+    // todos 배열에서 전달받은 id와 다른 것들만 넣기 = id가 같은 항목을 삭쩨
+    setTodos(todos.filter((todo) => todo.id != id));
+  });
+
   return (
     <div className="wrapper">
       <div className="container">
         <InputBox onConcat={onConcat} />
-        <TodoListBox todos={todos} />
+        <TodoListBox todos={todos} onDelete={onDelete} />
         <DoneListBox />
       </div>
     </div>

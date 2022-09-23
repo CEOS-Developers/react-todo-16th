@@ -14,8 +14,8 @@ const Item = styled.div`
   }
 `;
 
-const ListItem = ({ todo }) => {
-  const { text, checked } = todo;
+const ListItem = ({ todo, onDelete }) => {
+  const { id, text, checked } = todo;
 
   return (
     <Item>
@@ -23,7 +23,7 @@ const ListItem = ({ todo }) => {
         {checked ? <BsCheckCircleFill /> : <BsCircle />}
       </div>
       <div className="text">{text}</div>
-      <div className="delete">
+      <div className="delete" onClick={() => onDelete(id)}>
         <AiFillDelete />
       </div>
     </Item>
