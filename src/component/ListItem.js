@@ -14,12 +14,12 @@ const Item = styled.div`
   }
 `;
 
-const ListItem = ({ todo, onDelete }) => {
+const ListItem = ({ todo, onDelete, onCheck }) => {
   const { id, text, checked } = todo;
 
   return (
     <Item>
-      <div className="check">
+      <div className="check" onClick={() => onCheck(id)}>
         {checked ? <BsCheckCircleFill /> : <BsCircle />}
       </div>
       <div className="text">{text}</div>
