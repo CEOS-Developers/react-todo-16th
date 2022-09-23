@@ -37,23 +37,39 @@ const Header = styled.h1`
 const Box = () => {
   const [cnt, setCnt] = useState(0);
   const [list, setList] = useState([]);
+
+  const [doingCnt, setDoingCnt] = useState(0);
+  const [doneCnt, setDoneCnt] = useState(0);
+
   const getContent = (li) => {
     setCnt((cnt) => cnt + 1);
     const addLi = {
       id: cnt,
       content: li,
+      isDone: false,
     };
-    setList([...list, { id: addLi.id, content: addLi.content }]);
-    console.log(list);
+    setList([
+      ...list,
+      { id: addLi.id, content: addLi.content, isDone: addLi.isDone },
+    ]);
   };
+
+  const toggle = (id) => {
+    setList(
+      list.map((li) => {
+        return li.id === id ? { ...li, isDone: !li.isDone } : li;
+      })
+    );
+  };
+
   return (
     <ToDoBox>
       <Header>My To Do List ^^</Header>
       <Form getContent={getContent} />
       <hr />
-      <Doing id="doing" />
+      <Doing id="doing" list={list} cnt={doingCnt} toggle={toggle} />
       <hr />
-      <Done id="done" />
+      <Done id="done" list={list} cnt={doneCnt} toggle={toggle} />
     </ToDoBox>
   );
 };
