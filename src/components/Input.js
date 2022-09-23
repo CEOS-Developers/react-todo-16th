@@ -6,9 +6,16 @@ const Input=({addTask})=>{
     const [value,setValue]=useState('');
 
     const onSubmit = (e)=>{
-        addTask(value);
+
         e.preventDefault();
-        setValue(''); // value 값 초기화
+        
+        if(value==='') {
+            alert('할 일을 입력해주세요');
+        }
+        else{
+            addTask(value);
+            setValue(''); // value 값 초기화
+        }
     }
 
     return(

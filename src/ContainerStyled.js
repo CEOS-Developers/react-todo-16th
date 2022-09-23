@@ -36,4 +36,16 @@ const TaskContainer=styled.div`
   flex-direction:'row';
 `
 
-export {Container ,ListContainer,ListHeaderContainer,TaskContainer};
+const TaskListContainer=styled.div`
+  overflow-y:auto;
+  height:190px;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #ccc;
+  }
+`
+
+export {Container ,ListContainer,ListHeaderContainer,TaskContainer,TaskListContainer};
