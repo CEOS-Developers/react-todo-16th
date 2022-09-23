@@ -17,7 +17,7 @@ const ListTitle = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!todo){
+        if(!todo || todo.trim()===""){
             return;
         }
         props.onSubmit(todo);

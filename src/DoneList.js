@@ -11,8 +11,7 @@ const DoneListBlock = styled.div`
 `
 
 const DoneList = (props) => {
-    const {handleToToDo,handleRemove,dones}=props;
-    console.log(dones);
+    const {onChangeTodo,onRemove,dones}=props;
     return (
         <div>
             <DoneListBlock>
@@ -23,8 +22,8 @@ const DoneList = (props) => {
                         <DoneItem
                         done={done}
                         key={done.id}
-                        handleToToDo={handleToToDo}
-                        handleRemove={handleRemove}
+                        onChangeTodo={onChangeTodo}
+                        onRemove={onRemove}
                         />
                     ))
                 }

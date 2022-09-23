@@ -1,21 +1,21 @@
 import React from 'react';
 
 const Item = (props) => {
-    const {todo, handleToDone, handleRemove} = props;
+    const {todo, onChangeDone, onRemove} = props;
 
-    const handleSubmit = (e) => {
-        handleToDone(todo.text, todo.id);
+    const handleChange = (e) => {
+        onChangeDone(todo.text, todo.id);
     }
 
-    const func = (e) => {
-        handleRemove(todo.id);
+    const handleRemove = (e) => {
+        onRemove(todo.id);
     }
 
     return (
         <div>
             {todo.text}
-            <button onClick={handleSubmit}>⬇️</button>
-            <button onClick={func}>Del</button>
+            <button onClick={handleChange}>⬇️</button>
+            <button onClick={handleRemove}>Del</button>
         </div>
     );
 };

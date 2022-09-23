@@ -16,19 +16,18 @@ const ListTemplate = () => {
     const [todos,setTodos] = useState([]);
     const [dones,setDones] = useState([]);
 
-    const id_todo = useRef(0);
-    const id_done = useRef(0);
+    const id = useRef(0);
 
     const handleSubmit = (text) => {
         const todo = {
-            id: id_todo.current,
+            id: id.current,
             text
         };
         setTodos([...todos,todo]);
-        id_todo.current++;
+        id.current++;
     }
 
-    const handleToDone = (text,num) => {
+    const handleChangeDone = (text,num) => {
         const done = {
             id: num,
             text
@@ -38,7 +37,7 @@ const ListTemplate = () => {
         setTodos([...result]);
     }
 
-    const handleToToDo = (text,num) => {
+    const handleChangeTodo = (text,num) => {
         const todo = {
             id: num,
             text
@@ -60,8 +59,8 @@ const ListTemplate = () => {
         <div>
             <ListTemplateBlock>
                 <ListTitle onSubmit = {handleSubmit}/>
-                <TodoList handleToDone={handleToDone} handleRemove={handleRemove} todos = {todos}/>
-                <DoneList handleToToDo={handleToToDo} handleRemove={handleRemove} dones={dones}/>
+                <TodoList onChangeDone={handleChangeDone} onRemove={handleRemove} todos={todos}/>
+                <DoneList onChangeTodo={handleChangeTodo} onRemove={handleRemove} dones={dones}/>
             </ListTemplateBlock>
         </div>
     );

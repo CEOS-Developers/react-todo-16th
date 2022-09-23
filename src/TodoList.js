@@ -11,8 +11,7 @@ const TodoListBlock = styled.div`
     overflow-x: scroll;
 `
 const TodoList = (props) => {
-    const {handleToDone, handleRemove, todos} = props;
-    console.log(todos);
+    const {onChangeDone, onRemove, todos} = props;
     return (
         <div>
             <TodoListBlock>
@@ -23,8 +22,8 @@ const TodoList = (props) => {
                         <Item
                         todo={todo}
                         key={todo.id}
-                        handleToDone={handleToDone}
-                        handleRemove={handleRemove}
+                        onChangeDone={onChangeDone}
+                        onRemove={onRemove}
                         />
                     ))
                 }
