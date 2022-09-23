@@ -1,18 +1,14 @@
 import React from "react";
+import DoneListBox from "./component/DoneListBox";
 import InputBox from "./component/InputBox";
+import TodoListBox from "./component/TodoListBox";
 
 function App() {
   return (
-    <div class="container">
+    <div className="container">
       <InputBox />
-      <div class="box">
-        <h2>📝 할 일 목록 📝</h2>
-        <ul class="list" id="todo-list"></ul>
-      </div>
-      <div class="box">
-        <h2>💙 완료 목록 💙</h2>
-        <ul class="list" id="done-list"></ul>
-      </div>
+      <TodoListBox />
+      <DoneListBox />
     </div>
   );
 }
