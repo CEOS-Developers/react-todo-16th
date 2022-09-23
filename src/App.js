@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import TodoList from './Component/TodoList';
 import AddList from './Component/AddList';
 import styled from 'styled-components';
-import { computeHeadingLevel } from '@testing-library/react';
 import GlobalStyle from './GlobalStyle';
 
 function App() {
