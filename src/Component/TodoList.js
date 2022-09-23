@@ -18,7 +18,7 @@ function TodoList({ todos, onRemove, onToggle }) {
       {todos.map((todo) => (
         <Todo
           todo={todo}
-          key={todo.id}
+          key={todo.input}
           onRemove={onRemove}
           onToggle={onToggle}
         />

@@ -17,6 +17,7 @@ function App() {
   //input 박스에서 onChange함수 호출 시 일어나는 일
   const onChange = (e) => {
     const { name, value } = e.target;
+
     setInputs({
       ...inputs,
       [name]: value,
@@ -29,12 +30,11 @@ function App() {
   //input 입력시 만들어지는 배열 요소 함수
   const onCreate = () => {
     const todo = {
-      id: nextId.current,
+      id: Date.now(),
       input,
       toggle: true,
     };
 
-    console.log(todo);
     if (input.trim() === '') {
       setInputs({
         input: '',
@@ -73,7 +73,6 @@ function App() {
 
         setDlist(dlist.concat(moveI));
         setList(list.filter((todo) => todo.input !== input));
-      } else {
       }
     },
     [list, dlist]
