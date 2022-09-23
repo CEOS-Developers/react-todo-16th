@@ -24,16 +24,18 @@ const reducer = (state, action) => {
         itemList: state.itemList.filter((item) => item.id !== action.value),
       };
     case "TOGGLE":
-      const reaminList = state.itemList.filter(
+      const remainList = state.itemList.filter(
         (item) => item.id !== action.value
       );
-      const toggleItem = state.itemList.find(
+      const targetItem = state.itemList.find(
         (item) => item.id === action.value
       );
-      toggleItem.isDone = toggleItem.isDone ? false : true;
+
+      const toggledItem = { ...targetItem, isDone: !targetItem.isDone };
+
       return {
         ...state,
-        itemList: [...reaminList, toggleItem],
+        itemList: [...remainList, toggledItem],
       };
     default:
       throw new Error();

@@ -5,7 +5,6 @@ import { TodoContext } from "../context/todoProvider";
 const Item = (props) => {
   const { itemList } = useContext(TodoContext);
   const renderList = itemList.filter((item) => item.isDone === props.done);
-  console.log(renderList);
 
   return (
     <ItemSection>
@@ -21,16 +20,14 @@ const Item = (props) => {
 
 const TodoItem = (props) => {
   const { todoDispatch } = useContext(TodoContext);
-  console.log("왜안뜨냠");
-
-  const handleTodoItemClick = () => {
-    props.item.isDone = props.item.isDone ? false : true;
-    todoDispatch({ type: "TOGGLE", value: props.item.id });
-  };
 
   return (
     <li>
-      <span onClick={handleTodoItemClick}>{props.item.text}</span>
+      <span
+        onClick={() => todoDispatch({ type: "TOGGLE", value: props.item.id })}
+      >
+        {props.item.text}
+      </span>
       <button
         onClick={() => todoDispatch({ type: "REMOVE", value: props.item.id })}
       >
