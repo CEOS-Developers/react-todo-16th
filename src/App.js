@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import TodoList from './components/TodoList';
-import DoneList from './components/DoneList';
 
 import deleteImg from './img/delete.png';
 import plusImg from './img/plus.png';
