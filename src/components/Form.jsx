@@ -25,8 +25,12 @@ const Form = ({ getContent }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    getContent(input);
-    setInput('');
+    if (input) {
+      getContent(input);
+      setInput('');
+    } else {
+      alert('Check Plz :)');
+    }
   };
   return (
     <Post onSubmit={onSubmit}>

@@ -22,12 +22,10 @@ const Title = styled.span`
 const Btn = styled.button`
   margin-left: 10px;
 `;
-const Done = ({ id, list, cnt, toggle, onDelete }) => {
+const Done = ({ id, list, toggle, onDelete }) => {
   return (
     <ListContainer>
-      <Title>
-        {id} ({cnt})
-      </Title>
+      <Title>{id}</Title>
       {list.map((li) =>
         li.isDone ? (
           <li key={li.id}>

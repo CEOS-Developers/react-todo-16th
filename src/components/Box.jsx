@@ -38,9 +38,6 @@ const Box = () => {
   const [cnt, setCnt] = useState(0);
   const [list, setList] = useState([]);
 
-  const [doingCnt, setDoingCnt] = useState(0);
-  const [doneCnt, setDoneCnt] = useState(0);
-
   const getContent = (li) => {
     setCnt((cnt) => cnt + 1);
     const addLi = {
@@ -71,21 +68,9 @@ const Box = () => {
       <Header>My To Do List ^^</Header>
       <Form getContent={getContent} />
       <hr />
-      <Doing
-        id="doing"
-        list={list}
-        cnt={doingCnt}
-        toggle={toggle}
-        onDelete={onDelete}
-      />
+      <Doing id="doing" list={list} toggle={toggle} onDelete={onDelete} />
       <hr />
-      <Done
-        id="done"
-        list={list}
-        cnt={doneCnt}
-        toggle={toggle}
-        onDelete={onDelete}
-      />
+      <Done id="done" list={list} toggle={toggle} onDelete={onDelete} />
     </ToDoBox>
   );
 };

@@ -23,12 +23,10 @@ const Title = styled.span`
   padding-left: 30px;
 `;
 
-const Doing = ({ id, list, cnt, toggle, onDelete }) => {
+const Doing = ({ id, list, toggle, onDelete }) => {
   return (
     <ListContainer>
-      <Title>
-        {id} ({cnt})
-      </Title>
+      <Title>{id}</Title>
       {list.map((li) =>
         li.isDone ? undefined : (
           <li id={li.id} key={li.id}>
