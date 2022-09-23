@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import "./style.css";
 import DoneListBox from "./component/DoneListBox";
 import InputBox from "./component/InputBox";
@@ -10,16 +10,16 @@ function App() {
     { id: 2, text: "yayaya", checked: false },
   ]);
 
-  let nextId = 3;
+  const nextId = useRef(3);
   const onConcat = useCallback(
     (text) => {
       const todo = {
-        id: nextId,
+        id: nextId.current,
         text,
         checked: false,
       };
       setTodos(todos.concat(todo));
-      nextId--;
+      nextId.current++;
     },
     [todos]
   );
