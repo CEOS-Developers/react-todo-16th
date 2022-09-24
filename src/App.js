@@ -80,7 +80,8 @@ const EnterButton = styled.img`
   margin-left: 0.5rem;
   height: 2rem;
   width: 2rem;
-  margin-bottom: -0.8rem;=
+  margin-bottom: -0.8rem;
+  cursor: pointer;
 `;
 
 const DeleteButton = styled.img`
@@ -90,6 +91,7 @@ const DeleteButton = styled.img`
   margin-top: 1rem;
   height: 1rem;
   width: 1rem;
+  cursor: pointer;
 `;
 
 const TodoText = styled.button`
@@ -101,6 +103,7 @@ const TodoText = styled.button`
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  cursor: pointer;
 `;
 
 const Celebrate = styled.img`
