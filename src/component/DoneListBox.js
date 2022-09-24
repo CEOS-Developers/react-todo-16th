@@ -1,12 +1,12 @@
 import React from "react";
-import "../style.css";
+import { Box, List } from "./StyleComponent";
 import ListItem from "./ListItem";
 
 const DoneListBox = ({ todos, onDelete, onCheck }) => {
   return (
-    <div className="box">
+    <Box>
       <h2>💙 완료 목록 💙</h2>
-      <div className="list">
+      <List done={true}>
         {todos.map((todo) => (
           <ListItem
             todo={todo}
@@ -15,8 +15,8 @@ const DoneListBox = ({ todos, onDelete, onCheck }) => {
             onCheck={onCheck}
           />
         ))}
-      </div>{" "}
-    </div>
+      </List>
+    </Box>
   );
 };
 

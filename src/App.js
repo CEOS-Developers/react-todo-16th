@@ -1,8 +1,29 @@
 import React, { useState, useCallback, useRef } from "react";
 import "./style.css";
+import styled from "styled-components";
 import DoneListBox from "./component/DoneListBox";
 import InputBox from "./component/InputBox";
 import TodoListBox from "./component/TodoListBox";
+
+const Wrapper = styled.div`
+  font-family: "EarlyFontDiary";
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 360px;
+  padding: 20px;
+  border-radius: 20px;
+`;
 
 function App() {
   const [todos, setTodos] = useState([
@@ -48,13 +69,13 @@ function App() {
   );
 
   return (
-    <div className="wrapper">
-      <div className="container">
+    <Wrapper>
+      <Container>
         <InputBox onConcat={onConcat} />
         <TodoListBox todos={doings} onDelete={onDelete} onCheck={onCheck} />
         <DoneListBox todos={dones} onDelete={onDelete} onCheck={onCheck} />
-      </div>
-    </div>
+      </Container>
+    </Wrapper>
   );
 }
 

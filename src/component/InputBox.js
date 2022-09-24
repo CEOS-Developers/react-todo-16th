@@ -1,5 +1,23 @@
 import React, { useCallback, useState } from "react";
-import "../style.css";
+import styled from "styled-components";
+import { Box } from "./StyleComponent";
+
+const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Input = styled.input`
+  box-sizing: border-box;
+  padding: 10px;
+  height: 50px;
+  width: 250px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: none;
+`;
 
 const InputBox = ({ onConcat }) => {
   const [value, setValue] = useState("");
@@ -18,10 +36,10 @@ const InputBox = ({ onConcat }) => {
   );
 
   return (
-    <div className="box">
-      <form id="todo-form" onSubmit={onSubmit}>
+    <Box>
+      <Form onSubmit={onSubmit}>
         <h2>☑️ 투두리스트 ☑️ </h2>
-        <input
+        <Input
           type="text"
           placeholder="할 일을 작성하세요"
           required
@@ -29,8 +47,8 @@ const InputBox = ({ onConcat }) => {
           value={value}
           onChange={onChange}
         />
-      </form>
-    </div>
+      </Form>
+    </Box>
   );
 };
 

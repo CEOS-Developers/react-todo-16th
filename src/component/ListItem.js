@@ -3,6 +3,12 @@ import styled from "styled-components";
 import { AiFillDelete } from "react-icons/ai";
 import { BsCircle, BsCheckCircleFill } from "react-icons/bs";
 
+const Button = styled.div`
+  border: 0;
+  background: none;
+  cursor: pointer;
+`;
+
 const Item = styled.div`
   display: flex;
   flex-direction: row;
@@ -19,13 +25,13 @@ const ListItem = ({ todo, onDelete, onCheck }) => {
 
   return (
     <Item>
-      <div className="check" onClick={() => onCheck(id)}>
+      <Button className="check" onClick={() => onCheck(id)}>
         {checked ? <BsCheckCircleFill /> : <BsCircle />}
-      </div>
+      </Button>
       <div className="text">{text}</div>
-      <div className="delete" onClick={() => onDelete(id)}>
+      <Button className="delete" onClick={() => onDelete(id)}>
         <AiFillDelete />
-      </div>
+      </Button>
     </Item>
   );
 };
