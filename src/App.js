@@ -10,8 +10,8 @@ function App() {
     { id: 2, text: "yayaya", checked: false },
   ]);
 
-  const doings = todos.filter((todo) => todo.checked === true);
-  const dones = todos.filter((todo) => todo.checked === false);
+  const doings = todos.filter((todo) => todo.checked === false);
+  const dones = todos.filter((todo) => todo.checked === true);
 
   // 추가
   const nextId = useRef(3);
