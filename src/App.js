@@ -146,14 +146,14 @@ function App() {
 
   // listname에서 다른 리스트로 요소 이동
   const moveList = (listname, id, text) => {
-    if (listname == doingList) {
+    if (listname === doingList) {
       setFinish(true);
       setTimeout(() => {
         setFinish(false);
       }, 1000);
       plusList(doneList, id, text);
       removeList(doingList, id);
-    } else if (listname == doneList) {
+    } else if (listname === doneList) {
       plusList(doingList, id, text);
       removeList(doneList, id);
     }
@@ -168,9 +168,9 @@ function App() {
 
     console.log(todo);
 
-    if (listname == doingList) {
+    if (listname === doingList) {
       setDoingList(doingList.concat(todo));
-    } else if (listname == doneList) {
+    } else if (listname === doneList) {
       setDoneList(doneList.concat(todo));
       console.log(doneList);
     }
@@ -178,9 +178,9 @@ function App() {
 
   // listname에서 해당 id 가지고 있는 리스트 찾아서 삭제
   const removeList = (listname, id) => {
-    if (listname == doingList) {
+    if (listname === doingList) {
       setDoingList(doingList.filter((list) => list.id !== id));
-    } else if (listname == doneList) {
+    } else if (listname === doneList) {
       const newDoneList = doneList.filter((list) => list.id !== id);
       setDoneList(newDoneList);
     }
