@@ -5,20 +5,7 @@ import styled from 'styled-components';
 function AddList({ input, onChange, onCreate }) {
   return (
     <StyledAddList>
-      <Styledh2>
-        {' '}
-        <StyledImg
-          src="https://cdn-icons-png.flaticon.com/512/5259/5259457.png"
-          className="imghrt"
-          alt="*"
-        />
-        ToDo List
-        <StyledImg
-          src="https://cdn-icons-png.flaticon.com/512/5259/5259457.png"
-          className="imghrt"
-          alt="*"
-        />
-      </Styledh2>
+      <Styledh2> ToDo List</Styledh2>
       <StyledInput
         className="input"
         name="input"
@@ -56,17 +43,11 @@ const StyledButton = styled.button`
 `;
 
 const Styledh2 = styled.h2`
-  margin-left: 100px;
+  margin-left: 130px;
   display: flex;
   flex-direction: row;
   text-align: center;
   color: pink;
-`;
-
-const StyledImg = styled.img`
-  width: 25px;
-  height: 25px;
-  margin-top: 5px;
 `;
 
 export default AddList;

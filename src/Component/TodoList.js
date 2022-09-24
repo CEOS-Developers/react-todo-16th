@@ -5,7 +5,14 @@ import styled from 'styled-components';
 function Todo({ todo, onRemove, onToggle }) {
   return (
     <StyledText>
-      <StyledLi onClick={() => onToggle(todo.input)}>{todo.input}</StyledLi>
+      <StyledLi
+        onClick={() => {
+          onToggle(todo.id);
+        }}
+      >
+        {' '}
+        {todo.input}
+      </StyledLi>
       <StyledErase onClick={() => onRemove(todo.id)}>X</StyledErase>
     </StyledText>
   );
@@ -18,7 +25,7 @@ function TodoList({ todos, onRemove, onToggle }) {
       {todos.map((todo) => (
         <Todo
           todo={todo}
-          key={todo.input}
+          key={todo.id}
           onRemove={onRemove}
           onToggle={onToggle}
         />

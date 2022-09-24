@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import TodoList from './Component/TodoList';
 import AddList from './Component/AddList';
 import styled from 'styled-components';
@@ -23,9 +23,6 @@ function App() {
     });
   };
 
-  //nextId 1부터 사용
-  const nextId = useRef(1);
-
   //input 입력시 만들어지는 배열 요소 함수
   const onCreate = () => {
     const todo = {
@@ -34,7 +31,7 @@ function App() {
       toggle: true,
     };
 
-    if (input.trim() === '') {
+    if (!input.trim()) {
       setInputs({
         input: '',
         toggle: true,
@@ -45,7 +42,6 @@ function App() {
         input: '',
         toggle: true,
       });
-      nextId.current += 1;
     }
   };
 
@@ -57,45 +53,38 @@ function App() {
     setDlist(dlist.filter((todo) => todo.id !== id));
   };
 
-  const onToggle = useCallback(
-    (input) => {
-      const lis = list.find((todo) => todo.input === input);
+  const onToggle = (id) => {
+    const lis = list.find((todo) => todo.id === id);
 
-      if (lis.toggle !== false) {
-        setList(
-          list.map((todo) =>
-            todo.input === input ? { ...todo, toggle: !todo.toggle } : todo
-          )
-        );
+    const moveI = list.find((todo) => todo.id === id);
+    if (lis.toggle !== false) {
+      setList(
+        list.map((todo) =>
+          todo.id === id ? { ...todo, toggle: !todo.toggle } : todo
+        )
+      );
 
-        const moveI = list.find((todo) => todo.input === input);
+      setDlist(dlist.concat(moveI));
+      setList(list.filter((todo) => todo.id !== id));
+    }
+  };
 
-        setDlist(dlist.concat(moveI));
-        setList(list.filter((todo) => todo.input !== input));
-      }
-    },
-    [list, dlist]
-  );
+  const onDtoggle = (id) => {
+    const dlis = dlist.find((todo) => todo.id === id);
 
-  const onDtoggle = useCallback(
-    (input) => {
-      const dlis = dlist.find((todo) => todo.input === input);
+    if (dlis.toggle === true) {
+      setDlist(
+        dlist.map((todo) =>
+          todo.id === id ? { ...todo, toggle: !todo.toggle } : todo
+        )
+      );
 
-      if (dlis.toggle === true) {
-        setDlist(
-          dlist.map((todo) =>
-            todo.input === input ? { ...todo, toggle: !todo.toggle } : todo
-          )
-        );
+      const moveI = dlist.find((todo) => todo.id === id);
 
-        const moveI = dlist.find((todo) => todo.input === input);
-
-        setList(list.concat(moveI));
-        setDlist(dlist.filter((todo) => todo.input !== input));
-      }
-    },
-    [list, dlist]
-  );
+      setList(list.concat(moveI));
+      setDlist(dlist.filter((todo) => todo.id !== id));
+    }
+  };
 
   return (
     <>
@@ -103,9 +92,9 @@ function App() {
       <StyledBody>
         <AllTemp>
           <AddList input={input} onChange={onChange} onCreate={onCreate} />
-          <FontCol> 할 일(중복 입력X) {list.length}</FontCol>
+          <FontCol> 📌 To do: {list.length}</FontCol>
           <TodoList todos={list} onRemove={onRemove} onToggle={onToggle} />
-          <FontCol> Done {dlist.length}</FontCol>
+          <FontCol> 📌 Done: {dlist.length}</FontCol>
           <TodoList todos={dlist} onRemove={onDremove} onToggle={onDtoggle} />
         </AllTemp>
       </StyledBody>
