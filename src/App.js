@@ -132,7 +132,7 @@ function App() {
   };
 
   const onReset = () => {
-    if (text.trim() == '') {
+    if (!text.trim()) {
       alert('한 글자 이상 입력해주세요');
     } else {
       const todo = {
