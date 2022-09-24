@@ -39,13 +39,14 @@ const SubContainer = styled.div`
   border: 1px solid white;
 
   &::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.7rem;
   }
   &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
     background-color: white;
   }
   &::-webkit-scrollbar-track {
-    background-color: black;
+    background : transparent;
 `;
 
 const RowContainer = styled.div`
