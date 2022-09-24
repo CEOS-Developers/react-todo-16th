@@ -4,14 +4,12 @@ import Item from "./Item";
 
 const TodoContainer = () => {
   return (
-    <>
-      <Container>
-        <h1>Things to do</h1>
-        <Input />
-        <Item title="📂 to do" done={false} />
-        <Item title="🗑 done" done={true} />
-      </Container>
-    </>
+    <Container>
+      <h1>Things to do</h1>
+      <Input />
+      <Item title="📂 to do" done={false} />
+      <Item title="🗑 done" done={true} />
+    </Container>
   );
 };
 
