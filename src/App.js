@@ -10,6 +10,9 @@ function App() {
     { id: 2, text: "yayaya", checked: false },
   ]);
 
+  const doings = todos.filter((todo) => todo.checked === true);
+  const dones = todos.filter((todo) => todo.checked === false);
+
   // 추가
   const nextId = useRef(3);
   const onConcat = useCallback(
@@ -48,8 +51,8 @@ function App() {
     <div className="wrapper">
       <div className="container">
         <InputBox onConcat={onConcat} />
-        <TodoListBox todos={todos} onDelete={onDelete} onCheck={onCheck} />
-        <DoneListBox />
+        <TodoListBox todos={doings} onDelete={onDelete} onCheck={onCheck} />
+        <DoneListBox todos={dones} onDelete={onDelete} onCheck={onCheck} />
       </div>
     </div>
   );
