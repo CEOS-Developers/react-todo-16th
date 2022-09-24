@@ -14,7 +14,7 @@ const Input = () => {
   };
 
   const handleInputButtonClick = () => {
-    if (todoData.text.replace(/ /g, "")) {
+    if (todoData.text.trim()) {
       todoDispatch({ type: "TODO", value: todoData });
       todo.setValue("");
     } else {
