@@ -52,7 +52,7 @@ function App() {
   // 삭제
   const onDelete = useCallback((id) => {
     // todos 배열에서 전달받은 id와 다른 것들만 넣기 = id가 같은 항목을 삭쩨
-    setTodos(todos.filter((todo) => todo.id != id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   });
 
   // 완료체크
