@@ -8,7 +8,9 @@ const Item = (props) => {
 
   return (
     <ItemSection>
-      <h2>{props.title}</h2>
+      <h2>
+        {props.title} ({renderList.length})
+      </h2>
       <ItemList done={props.done}>
         {renderList.map((item) => {
           return <TodoItem key={item.id} item={item} />;
