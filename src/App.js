@@ -10,7 +10,7 @@ import {
 } from "./ContainerStyled";
 
 const App = () => {
-  const week = ["월", "화", "수", "목", "금", "토", "일"];
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
 
   const [tasks, setTasks] = useState([]);
 
@@ -80,7 +80,7 @@ const App = () => {
             "월 " +
             new Date().getDate() +
             "일 " +
-            week[new Date().getDay() - 1] +
+            week[new Date().getDay()] +
             "요일"}
         </Header>
         <Header>To Do List</Header>
