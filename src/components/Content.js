@@ -4,12 +4,20 @@ import TodoList from './TodoList';
 const Content = () => {
   // todo item, todo 배열, done 배열
   const [todo, setTodo] = useState('');
-  const [todos, setTodos] = useState(() =>
-    JSON.parse(localStorage.getItem('todos'))
-  );
-  const [dones, setDones] = useState(() =>
-    JSON.parse(localStorage.getItem('dones'))
-  );
+  const [todos, setTodos] = useState([]);
+  const [dones, setDones] = useState([]);
+
+  // 로컬스토리지에서 값 있으면 불러오기
+  useEffect(() => {
+    const localTodos = JSON.parse(localStorage.getItem('todos'));
+    const localDones = JSON.parse(localStorage.getItem('dones'));
+    if (localTodos) {
+      setTodos(localTodos);
+    }
+    if (localDones) {
+      setDones(localDones);
+    }
+  }, []);
 
   // todo item의 id값 정해주기
   const todoId = useRef(0);
