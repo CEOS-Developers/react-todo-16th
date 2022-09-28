@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Box = styled.div`
   display: flex;
@@ -8,22 +8,4 @@ const Box = styled.div`
   border-bottom: 1px solid gray;
 `;
 
-const List = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  height: 200px;
-  overflow: hidden auto;
-
-  text-decoration: line-through;
-  color: gray;
-
-  ${(props) =>
-    props.done &&
-    css`
-      text-decoration: line-through;
-      color: gray;
-    `}
-`;
-
-export { Box, List };
+export { Box };

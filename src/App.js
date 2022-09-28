@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import DoneListBox from "./component/DoneListBox";
 import InputBox from "./component/InputBox";
-import TodoListBox from "./component/TodoListBox";
+import ListBox from "./component/ListBox";
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -14,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
 
 html {
     background-color: rgb(0, 70, 42);
+    height: 100vh;
+    overflow: hidden;
 }
 `;
 
@@ -43,8 +44,8 @@ function App() {
     { id: 2, text: "yayaya", checked: false },
   ]);
 
-  const doings = todos.filter((todo) => todo.checked === false);
-  const dones = todos.filter((todo) => todo.checked === true);
+  const doings = todos.filter((todo) => !todo.checked);
+  const dones = todos.filter((todo) => !todo.checked);
 
   // 추가
   const nextId = useRef(3);
@@ -85,8 +86,20 @@ function App() {
       <GlobalStyle />
       <Container>
         <InputBox onConcat={onConcat} />
-        <TodoListBox todos={doings} onDelete={onDelete} onCheck={onCheck} />
-        <DoneListBox todos={dones} onDelete={onDelete} onCheck={onCheck} />
+        <ListBox
+          type="doing"
+          title="📝 할 일 목록 📝"
+          todos={doings}
+          onDelete={onDelete}
+          onCheck={onCheck}
+        />
+        <ListBox
+          type="done"
+          title="💙 완료 목록 💙"
+          todos={dones}
+          onDelete={onDelete}
+          onCheck={onCheck}
+        />
       </Container>
     </Wrapper>
   );
