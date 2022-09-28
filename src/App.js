@@ -13,15 +13,11 @@ const GlobalStyle = createGlobalStyle`
 
 html {
     background-color: rgb(0, 70, 42);
-    height: 100vh;
-    overflow: hidden;
 }
 `;
 
 const Wrapper = styled.div`
   font-family: "EarlyFontDiary";
-  height: 100%;
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +29,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: whitesmoke;
-  width: 360px;
   padding: 20px;
   border-radius: 20px;
 `;
@@ -45,7 +40,7 @@ function App() {
   ]);
 
   const doings = todos.filter((todo) => !todo.checked);
-  const dones = todos.filter((todo) => !todo.checked);
+  const dones = todos.filter((todo) => todo.checked);
 
   // 추가
   const nextId = useRef(3);
