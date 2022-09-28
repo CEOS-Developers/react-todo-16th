@@ -1,9 +1,21 @@
 import React, { useState, useCallback, useRef } from "react";
-import "./style.css";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import DoneListBox from "./component/DoneListBox";
 import InputBox from "./component/InputBox";
 import TodoListBox from "./component/TodoListBox";
+
+const GlobalStyle = createGlobalStyle`
+@font-face {
+    font-family: 'EarlyFontDiary';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EarlyFontDiary.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    background-color: rgb(0, 70, 42);
+}
+`;
 
 const Wrapper = styled.div`
   font-family: "EarlyFontDiary";
@@ -70,6 +82,7 @@ function App() {
 
   return (
     <Wrapper>
+      <GlobalStyle />
       <Container>
         <InputBox onConcat={onConcat} />
         <TodoListBox todos={doings} onDelete={onDelete} onCheck={onCheck} />

@@ -15,6 +15,9 @@ const List = styled.div`
   height: 200px;
   overflow: hidden auto;
 
+  text-decoration: line-through;
+  color: gray;
+
   ${(props) =>
     props.done &&
     css`
